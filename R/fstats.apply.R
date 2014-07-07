@@ -2,15 +2,15 @@
 #'
 #' Extract chunks from a DataFrame and get the F-statistics on the rows of 
 #' \code{data}, comparing the models \code{mod} (alternative) and \code{mod0} 
-#' (null). This is a helper function for \link{calculateStats} and 
-#' \link{calculatePvalues}.
+#' (null). This is a helper function for \link[derfinder]{calculateStats} and 
+#' \link[derfinder]{calculatePvalues}.
 #'
 #' @param index An index (logical Rle is the best for saving memory) indicating 
 #' which rows of the DataFrame to use.
 #' @param data The DataFrame containing the coverage information. Normally 
 #' stored in \code{coveragePrep$coverageProcessed} from 
-#' \link{preprocessCoverage}. Could also be the full data from 
-#' \link{loadCoverage}.
+#' \link[derfinder]{preprocessCoverage}. Could also be the full data from 
+#' \link[derfinder]{loadCoverage}.
 #' @param mod The design matrix for the alternative model. Should be m by p 
 #' where p is the number of covariates (normally also including the intercept).
 #' @param mod0 The design matrix for the null model. Should be m by p_0.
@@ -18,9 +18,9 @@
 #' the F-stat calculation. Useful when the Residual Sum of Squares of the 
 #' alternative model is very small.
 #' @param lowMemDir The directory where the processed chunks are saved when 
-#' using \link{preprocessCoverage} with a specified \code{lowMemDir}.
+#' using \link[derfinder]{preprocessCoverage} with a specified \code{lowMemDir}.
 #' @param method Has to be either 'Matrix' (default), 'Rle' or 'regular'. See details.
-#' @param scalefac The scaling factor used in \link{preprocessCoverage}. It is
+#' @param scalefac The scaling factor used in \link[derfinder]{preprocessCoverage}. It is
 #' only used when \code{method='Matrix'}.
 #'
 #' @details If \code{lowMemDir} is specified then \code{index} is expected to 
@@ -46,7 +46,8 @@
 #' \code{method='Matrix'} can be slower than \code{method='regular'} because the
 #' coercion step is slower.
 #' 
-#' In versions <= 0.0.62, \code{method='regular'} was the only option available.
+#' In derfinder versions <= 0.0.62, \code{method='regular'} was the only option 
+#' available.
 #'
 #' @return A numeric Rle with the F-statistics per base for the chunk in 
 #' question.
@@ -58,7 +59,7 @@
 #' @importMethodsFrom GenomicRanges '['
 #' @importFrom Matrix sparseMatrix
 #' @importMethodsFrom Matrix '%*%' drop
-#' @seealso \link{calculateStats}, \link{calculatePvalues}
+#' @seealso \link[derfinder]{calculateStats}, \link[derfinder]{calculatePvalues}
 #'
 #' @examples
 #' ## Load data
