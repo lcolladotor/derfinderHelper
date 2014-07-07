@@ -16,10 +16,10 @@ install.packages("Matrix")
 
 ## Pre-requisites from Bioconductor
 source("http://bioconductor.org/biocLite.R")
-biocLite(c("IRanges", "GenomicRanges"))
+biocLite("IRanges")
 
 ## derfinderHelper itself
-library(devtools)
+library("devtools")
 install_github("lcolladotor/derfinderHelper")
 ```
 
