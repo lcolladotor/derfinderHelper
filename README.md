@@ -16,7 +16,7 @@ install.packages("Matrix")
 
 ## Pre-requisites from Bioconductor
 source("http://bioconductor.org/biocLite.R")
-biocLite("IRanges")
+biocLite(c("IRanges", "S4Vectors"))
 
 ## derfinderHelper itself
 library("devtools")

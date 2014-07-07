@@ -54,7 +54,8 @@
 #'
 #' @author Leonardo Collado-Torres, Jeff Leek
 #' @export
-#' @importFrom IRanges Rle
+#' @importFrom S4Vectors Rle
+#' @importMethodsFrom S4Vectors as.numeric
 #' @importMethodsFrom IRanges as.data.frame as.matrix Reduce ncol nrow which '['
 #' @importFrom Matrix sparseMatrix
 #' @importMethodsFrom Matrix '%*%' drop
