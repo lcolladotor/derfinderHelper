@@ -59,6 +59,7 @@
 #' @importFrom S4Vectors Rle
 #' @importMethodsFrom S4Vectors as.numeric
 #' @importMethodsFrom IRanges as.data.frame as.matrix Reduce ncol nrow which '['
+#' unlist
 #' @importFrom Matrix sparseMatrix
 #' @importMethodsFrom Matrix '%*%' drop
 #' @import IRanges
@@ -181,11 +182,10 @@ fstats.apply <- function(index=Rle(TRUE, nrow(data)), data, mod, mod0,
     
     ## Build Matrix object from a DataFrame
     i.list <- sapply(data, function(x) { which(x > scalefac.log2) })
-    j.list <- mapply(function(x, y) { rep(y, length(x)) }, i.list, seq_len(length(i.list)))
     i <- unlist(i.list, use.names=FALSE)
-    j <- unlist(j.list, use.names=FALSE)
-    x <- unlist(mapply(function(x, y) { as.numeric(x[y]) }, data, i.list), 
-        use.names=FALSE) - scalefac.log2
+    j <- rep(seq_len(ncol(data)), sapply(i.list, length))
+    ll <- unlist(data, use.names=FALSE)
+    x <- as.numeric(ll[ ll > scalefac.log2 ]) - scalefac.log2
         
     ## Build final object
     sparseMatrix(i=i, j=j, x=x, dims=c(nrow(data), ncol(data)), giveCsparse=TRUE, symmetric=FALSE, index1=TRUE)
