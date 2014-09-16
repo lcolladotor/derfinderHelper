@@ -20,6 +20,8 @@ notifications:
   email:
     on_success: change
     on_failure: change
+  slack:
+    secure: FIA40TI4UkOHvR19rNCfX1la5tiCmyEMjiO/sGyK0cWGt5qQxIOp+PHE3pOk9axYiVacbSCR3oAosQUsOxRew/6FyMsNR3bCPXVUzrIimABvBbjofMBDx3Z7W03O+6YahmHwDrJEWDuJ0k4457QqeqhITcFWX4twieo5fJCjedI=
 
 env:
   global:
