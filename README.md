@@ -5,22 +5,22 @@ Helper package for [derfinder](https://github.com/lcolladotor/derfinder).
 
 # Installation instructions
 
-Get R 3.1 or newer from [CRAN](http://cran.r-project.org/).
+Get R 3.1.1 or newer from [CRAN](http://cran.r-project.org/).
 
-```S
+```R
 ## If needed
-install.packages("devtools")
+install.packages('devtools')
 
 ## Pre-requisites from CRAN
-install.packages("Matrix")
+install.packages('Matrix', 'testthat')
 
 ## Pre-requisites from Bioconductor
-source("http://bioconductor.org/biocLite.R")
-biocLite(c("IRanges", "S4Vectors"))
+source('http://bioconductor.org/biocLite.R')
+biocLite(c('IRanges', 'S4Vectors'))
 
 ## derfinderHelper itself
-library("devtools")
-install_github("lcolladotor/derfinderHelper")
+library('devtools')
+install_github('lcolladotor/derfinderHelper')
 ```
 
 # Citation
