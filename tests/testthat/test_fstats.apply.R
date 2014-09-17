@@ -1,4 +1,5 @@
 ## Setup
+Sys.sleep(20)
 suppressPackageStartupMessages(library('IRanges'))
 set.seed(20140916)
 toyData <- DataFrame(
