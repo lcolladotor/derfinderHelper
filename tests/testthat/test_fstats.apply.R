@@ -1,5 +1,7 @@
-## Setup
-Sys.sleep(20)
+## Break intentionally
+test_that('intentional break', expect_that(TRUE, equals(FALSE)))
+
+## Setup1
 suppressPackageStartupMessages(library('IRanges'))
 set.seed(20140916)
 toyData <- DataFrame(
