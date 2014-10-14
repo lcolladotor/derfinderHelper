@@ -8,19 +8,9 @@ Helper package for [derfinder](https://github.com/lcolladotor/derfinder).
 Get R 3.1.1 or newer from [CRAN](http://cran.r-project.org/).
 
 ```R
-## If needed
-install.packages('devtools')
-
-## Pre-requisites from CRAN
-install.packages('Matrix', 'testthat', 'knitr', 'knitrBoostrap', 'rmarkdown')
-
-## Pre-requisites from Bioconductor
+## From Bioconductor
 source('http://bioconductor.org/biocLite.R')
-biocLite(c('IRanges', 'S4Vectors'))
-
-## derfinderHelper itself
-library('devtools')
-install_github('lcolladotor/derfinderHelper')
+biocLite('derfinderHelper')
 ```
 
 # Vignette
