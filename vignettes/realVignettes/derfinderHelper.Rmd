@@ -33,7 +33,7 @@ cite_options(hyperlink = 'to.doc', citation_format = 'text', style = 'html')
 
 ## Write bibliography information
 bibs <- c(knitcitations = citation('knitcitations'),
-    derfinderHelper = citation('derfinderHelper'), 
+    derfinderHelper = citation('derfinderHelper')[1], 
     knitrBootstrap = citation('knitrBootstrap'), 
     knitr = citation('knitr')[3],
     rmarkdown = citation('rmarkdown'),
