@@ -46,7 +46,7 @@ names(bib) <- c('knitcitations', 'derfinderHelper', 'knitrBootstrap',
 
 # Overview
 
-This is a stub vignette. The real one can be viewed online [here](http://lcolladotor.github.io/derfinderHelper/).
+This is a stub vignette. The real one can be viewed online [here](http://leekgroup.github.io/derfinderHelper/).
 
 
 
