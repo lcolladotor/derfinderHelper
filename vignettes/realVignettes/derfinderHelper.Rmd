@@ -16,7 +16,7 @@ output:
 Introduction to `derfinderHelper`
 ================================
 
-If you wish, you can view this vignette online [here](http://lcolladotor.github.io/derfinderHelper/).
+If you wish, you can view this vignette online [here](http://leekgroup.github.io/derfinderHelper/).
 
 ```{r vignetteSetup, echo=FALSE, message=FALSE, warning = FALSE}
 ## Track time spent on making the vignette
