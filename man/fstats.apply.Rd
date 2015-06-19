@@ -66,7 +66,8 @@ less memory than \code{method='regular'}. With tiny example data sets,
 \code{method='Matrix'} can be slower than \code{method='regular'} because the
 coercion step is slower.
 
-In versions <= 0.0.62, \code{method='regular'} was the only option available.
+In derfinder versions <= 0.0.62, \code{method='regular'} was the only option
+available.
 }
 \examples{
 ## Load data
