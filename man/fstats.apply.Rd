@@ -4,7 +4,7 @@
 \title{Calculate F-statistics per base by extracting chunks from a DataFrame}
 \usage{
 fstats.apply(index = Rle(TRUE, nrow(data)), data, mod, mod0, adjustF = 0,
-  lowMemDir = NULL, method = "Matrix", scalefac = 32, ...)
+  lowMemDir = NULL, method = "Matrix", scalefac = 32)
 }
 \arguments{
 \item{index}{An index (logical Rle is the best for saving memory) indicating
@@ -33,8 +33,6 @@ details.}
 \item{scalefac}{The scaling factor used in
 \link[derfinder]{preprocessCoverage}. It is only used when
 \code{method='Matrix'}.}
-
-\item{...}{Arguments passed to other methods.}
 }
 \value{
 A numeric Rle with the F-statistics per base for the chunk in
