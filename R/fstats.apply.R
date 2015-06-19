@@ -180,6 +180,7 @@ fstats.apply <- function(index=Rle(TRUE, nrow(data)), data, mod, mod0,
 ## Load chunk
 .loadChunk <- function(lowMemDir, index) {
     load(file.path(lowMemDir, paste0("chunk", index, ".Rdata")))
+    return(chunkProcessed)
 }
 
 ## Coerce to sparseMatrix
