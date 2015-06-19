@@ -18,6 +18,7 @@ Suggests:
 Description: Helper package for speeding up the derfinder package when using
     multiple cores.
 License: Artistic-2.0
+LazyData: false
 URL: https://github.com/lcolladotor/derfinderHelper
 BugReports: https://github.com/lcolladotor/derfinderHelper/issues
 biocViews: DifferentialExpression, Sequencing, RNASeq, Software
