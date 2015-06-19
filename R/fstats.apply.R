@@ -19,9 +19,11 @@
 #' alternative model is very small.
 #' @param lowMemDir The directory where the processed chunks are saved when 
 #' using \link[derfinder]{preprocessCoverage} with a specified \code{lowMemDir}.
-#' @param method Has to be either 'Matrix' (default), 'Rle' or 'regular'. See details.
-#' @param scalefac The scaling factor used in \link[derfinder]{preprocessCoverage}. It is
-#' only used when \code{method='Matrix'}.
+#' @param method Has to be either 'Matrix' (default), 'Rle' or 'regular'. See 
+#' details.
+#' @param scalefac The scaling factor used in 
+#' \link[derfinder]{preprocessCoverage}. It is only used when 
+#' \code{method='Matrix'}.
 #'
 #' @details If \code{lowMemDir} is specified then \code{index} is expected to 
 #' specify the chunk number.
@@ -59,6 +61,7 @@
 #' @importMethodsFrom IRanges as.data.frame as.matrix Reduce ncol nrow which '['
 #' @importFrom Matrix sparseMatrix
 #' @importMethodsFrom Matrix '%*%' drop
+#' @import IRanges
 #' @seealso \link[derfinder]{calculateStats}, \link[derfinder]{calculatePvalues}
 #'
 #' @examples
@@ -111,7 +114,7 @@ fstats.apply <- function(index=Rle(TRUE, nrow(data)), data, mod, mod0,
             data <- data[index, ]
         }        
     }
-    
+
     ## General setup
     n <- ncol(data)
     m <- nrow(data)
@@ -181,7 +184,8 @@ fstats.apply <- function(index=Rle(TRUE, nrow(data)), data, mod, mod0,
     j.list <- mapply(function(x, y) { rep(y, length(x)) }, i.list, seq_len(length(i.list)))
     i <- unlist(i.list, use.names=FALSE)
     j <- unlist(j.list, use.names=FALSE)
-    x <- unlist(mapply(function(x, y) { as.numeric(x[y]) }, data, i.list),
+    print(26); print(sessionInfo())
+    x <- unlist(mapply(function(x, y) { as.numeric(x[y]) }, data, i.list), 
         use.names=FALSE) - scalefac.log2
         
     ## Build final object

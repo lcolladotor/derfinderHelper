@@ -27,10 +27,12 @@ alternative model is very small.}
 \item{lowMemDir}{The directory where the processed chunks are saved when
 using \link[derfinder]{preprocessCoverage} with a specified \code{lowMemDir}.}
 
-\item{method}{Has to be either 'Matrix' (default), 'Rle' or 'regular'. See details.}
+\item{method}{Has to be either 'Matrix' (default), 'Rle' or 'regular'. See
+details.}
 
-\item{scalefac}{The scaling factor used in \link[derfinder]{preprocessCoverage}. It is
-only used when \code{method='Matrix'}.}
+\item{scalefac}{The scaling factor used in
+\link[derfinder]{preprocessCoverage}. It is only used when
+\code{method='Matrix'}.}
 }
 \value{
 A numeric Rle with the F-statistics per base for the chunk in
