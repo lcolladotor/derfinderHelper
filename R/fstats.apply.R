@@ -2,14 +2,15 @@
 #'
 #' Extract chunks from a DataFrame and get the F-statistics on the rows of 
 #' \code{data}, comparing the models \code{mod} (alternative) and \code{mod0} 
-#' (null).
+#' (null). This is a helper function for \link{calculateStats} and 
+#' \link{calculatePvalues}.
 #'
 #' @param index An index (logical Rle is the best for saving memory) indicating 
 #' which rows of the DataFrame to use.
 #' @param data The DataFrame containing the coverage information. Normally 
 #' stored in \code{coveragePrep$coverageProcessed} from 
-#' \code{derfinder::preprocessCoverage}. Could also be the full data from 
-#' \code{derfinder::loadCoverage}.
+#' \link{preprocessCoverage}. Could also be the full data from 
+#' \link{loadCoverage}.
 #' @param mod The design matrix for the alternative model. Should be m by p 
 #' where p is the number of covariates (normally also including the intercept).
 #' @param mod0 The design matrix for the null model. Should be m by p_0.
@@ -17,12 +18,10 @@
 #' the F-stat calculation. Useful when the Residual Sum of Squares of the 
 #' alternative model is very small.
 #' @param lowMemDir The directory where the processed chunks are saved when 
-#' using \code{derfinder::preprocessCoverage} with a specified \code{lowMemDir}.
-#' @param method Has to be either 'Matrix' (default), 'Rle' or 'regular'. See 
-#' details.
-#' @param scalefac The scaling factor used in 
-#' \code{derfinder::preprocessCoverage}. It is only used when 
-#' \code{method='Matrix'}.
+#' using \link{preprocessCoverage} with a specified \code{lowMemDir}.
+#' @param method Has to be either 'Matrix' (default), 'Rle' or 'regular'. See details.
+#' @param scalefac The scaling factor used in \link{preprocessCoverage}. It is
+#' only used when \code{method='Matrix'}.
 #'
 #' @details If \code{lowMemDir} is specified then \code{index} is expected to 
 #' specify the chunk number.
@@ -47,55 +46,33 @@
 #' \code{method='Matrix'} can be slower than \code{method='regular'} because the
 #' coercion step is slower.
 #' 
-#' In derfinder versions <= 0.0.62, \code{method='regular'} was the only option 
-#' available.
+#' In versions <= 0.0.62, \code{method='regular'} was the only option available.
 #'
 #' @return A numeric Rle with the F-statistics per base for the chunk in 
 #' question.
 #'
 #' @author Leonardo Collado-Torres, Jeff Leek
 #' @export
-#' @importFrom S4Vectors Rle
-#' @importMethodsFrom S4Vectors as.numeric Reduce sapply
-#' @importMethodsFrom IRanges as.data.frame as.matrix ncol nrow which '['
-#' unlist
+#' @importFrom IRanges Rle
+#' @importMethodsFrom IRanges as.data.frame as.matrix Reduce ncol nrow
+#' @importMethodsFrom GenomicRanges '['
 #' @importFrom Matrix sparseMatrix
-#' @importMethodsFrom Matrix '%*%' drop as.matrix
-#' @import IRanges
+#' @importMethodsFrom Matrix '%*%' drop
+#' @seealso \link{calculateStats}, \link{calculatePvalues}
 #'
 #' @examples
-#' ## Create some toy data
-#' library('IRanges')
-#' toyData <- DataFrame(
-#'     'sample1' = Rle(sample(0:10, 1000, TRUE)),
-#'     'sample2' = Rle(sample(0:10, 1000, TRUE)),
-#'     'sample3' = Rle(sample(0:10, 1000, TRUE)),
-#'     'sample4' = Rle(sample(0:10, 1000, TRUE)))
-#'
-#' ## Create the model matrices
-#' group <- c('A', 'A', 'B', 'B')
-#' mod.toy <- model.matrix(~ group) 
-#' mod0.toy <- model.matrix(~ 0 + rep(1, 4))
-#'
-#' ## Get the F-statistics
-#' fstats <- fstats.apply(data = toyData, mod = mod.toy, mod0 = mod0.toy, 
-#'     scalefac = 1)
-#' 
-#'
-#' ## Example with data from derfinder package
-#' \dontrun{
-#' ## Load the data
+#' ## Load data
 #' library('derfinder')
 #'
 #' ## Create the model matrices
 #' mod <- model.matrix(~ genomeInfo$pop)
 #' mod0 <- model.matrix(~ 0 + rep(1, nrow(genomeInfo)))
-#'
 #' ## Run the function
 #' system.time(fstats.Matrix <- fstats.apply(data=genomeData$coverage, mod=mod, 
 #'     mod0=mod0, method='Matrix', scalefac = 1))
 #' fstats.Matrix
 #' 
+#' \dontrun{
 #' ## Compare methods
 #' system.time(fstats.regular <- fstats.apply(data=genomeData$coverage, 
 #'     mod=mod, mod0=mod0, method='regular'))
@@ -112,8 +89,7 @@
 #' 
 #' ## Extra comparison, although the method to compare against is 'regular'
 #' summary(fstats.Rle - fstats.Matrix)
-#' } 
-#'
+#' }
 
 fstats.apply <- function(index=Rle(TRUE, nrow(data)), data, mod, mod0, 
     adjustF = 0, lowMemDir = NULL, method = "Matrix", scalefac = 32) {
@@ -129,13 +105,13 @@ fstats.apply <- function(index=Rle(TRUE, nrow(data)), data, mod, mod0,
     ## Load the chunk file
     if(!is.null(lowMemDir)) {
         data <- .loadChunk(lowMemDir = lowMemDir, index = index)
-    } else {
+    } else{
         if(!all(index)) {
             ##  Subset the DataFrame to the current chunk 
             data <- data[index, ]
         }        
     }
-
+    
     ## General setup
     n <- ncol(data)
     m <- nrow(data)
@@ -161,17 +137,11 @@ fstats.apply <- function(index=Rle(TRUE, nrow(data)), data, mod, mod0,
     
     ## Transform data
     if(useMethod == "Matrix") {
-        if(!is(data, "dgCMatrix")) {
-            data <- .transformSparseMatrix(data = data, scalefac = scalefac)
-        }
+        data <- .transformSparseMatrix(data = data, scalefac = scalefac)
     } else if (useMethod == "regular") {
         ##  Transform to a regular matrix
-        if(!is(data, "dgCMatrix")) {
-            data <- as.matrix(as.data.frame(data))
-        } else {
-            data <- as.matrix(data)
-        }
-    }
+        data <- as.matrix(as.data.frame(data))
+    }    
     
     ## How to calculate RSS and F-stats
     calculateMethod <- useMethod == "Matrix" | useMethod == "regular"
@@ -199,9 +169,7 @@ fstats.apply <- function(index=Rle(TRUE, nrow(data)), data, mod, mod0,
 
 ## Load chunk
 .loadChunk <- function(lowMemDir, index) {
-    chunkProcessed <- NULL
     load(file.path(lowMemDir, paste0("chunk", index, ".Rdata")))
-    return(chunkProcessed)
 }
 
 ## Coerce to sparseMatrix
@@ -209,12 +177,12 @@ fstats.apply <- function(index=Rle(TRUE, nrow(data)), data, mod, mod0,
     scalefac.log2 <- ifelse(scalefac <= 0, 0, log2(scalefac))
     
     ## Build Matrix object from a DataFrame
-    i.list <- sapply(data, function(x) { which(x > scalefac.log2) },
-        simplify = FALSE)
+    i.list <- sapply(data, function(x) { which(x > scalefac.log2) })
+    j.list <- mapply(function(x, y) { rep(y, length(x)) }, i.list, seq_len(length(i.list)))
     i <- unlist(i.list, use.names=FALSE)
-    j <- rep(seq_len(ncol(data)), sapply(i.list, length))
-    ll <- unlist(data, use.names=FALSE)
-    x <- as.numeric(ll[ ll > scalefac.log2 ]) - scalefac.log2
+    j <- unlist(j.list, use.names=FALSE)
+    x <- unlist(mapply(function(x, y) { as.numeric(x[y]) }, data, i.list),
+        use.names=FALSE) - scalefac.log2
         
     ## Build final object
     sparseMatrix(i=i, j=j, x=x, dims=c(nrow(data), ncol(data)), giveCsparse=TRUE, symmetric=FALSE, index1=TRUE)
