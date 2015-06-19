@@ -15,14 +15,7 @@ biocLite('derfinderHelper')
 
 # Vignette
 
-The vignette for this package can be viewed [here](http://lcolladotor.github.io/derfinderHelper/). If you want to re-build the vignette when installing this package, you will need to use:
-
-```R
-## Install building the vignette
-install_github('lcolladotor/derfinderHelper', build_vignettes = TRUE)
-```
-
-Note that this can take longer than installing the package without the vignette.
+The vignette for this package can be viewed [here](http://lcolladotor.github.io/derfinderHelper/) or via [Bioconductor's website](http://www.bioconductor.org/packages/devel/bioc/html/derfinderHelper.html).
 
 
 # Citation
