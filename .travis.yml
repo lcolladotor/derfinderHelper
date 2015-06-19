@@ -1,13 +1,12 @@
-# Sample .travis.yml for R projects from https://github.com/craigcitro/r-travis
-
 language: c
 
 before_install:
 #  - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
   - curl -OL http://raw.github.com/lcolladotor/r-travis/master/scripts/travis-tool.sh
   - chmod 755 ./travis-tool.sh
+  - chmod 755 ./travis-tool.sh
   - ./travis-tool.sh bootstrap
-
+  
 install:
   - ./travis-tool.sh install_bioc_deps
 
@@ -21,10 +20,10 @@ notifications:
     on_success: change
     on_failure: change
   slack:
-    secure: FIA40TI4UkOHvR19rNCfX1la5tiCmyEMjiO/sGyK0cWGt5qQxIOp+PHE3pOk9axYiVacbSCR3oAosQUsOxRew/6FyMsNR3bCPXVUzrIimABvBbjofMBDx3Z7W03O+6YahmHwDrJEWDuJ0k4457QqeqhITcFWX4twieo5fJCjedI=
+    secure: tsPpxEF6menprb4g4Y2ZrtlwhmBNqzjqmELEDDfxD3wwP07jOX2Uj+E9o3N1FqVgFhAiLUWEdr1C1IokBwMqkiNcBGOooT7ZC8VjB5Sp3bywZ68OB3191nmvLSoUrohY3aMug/HFdOwyFUtukrSmZKfp1sh9a96WlEsTRgAGEuU=
 
 env:
   global:
-    - R_CHECK_ARGS="--no-build-vignettes --no-manual --timings" 
-    - R_CHECK_TIME="TRUE"
-    - RUN_ALL_TESTS="TRUE"
+  - R_CHECK_ARGS="--no-build-vignettes --no-manual --timings"
+  - R_CHECK_TIME="TRUE"
+  - RUN_ALL_TESTS="TRUE"
