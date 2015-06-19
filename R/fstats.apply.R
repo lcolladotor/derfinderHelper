@@ -24,6 +24,7 @@
 #' @param scalefac The scaling factor used in 
 #' \link[derfinder]{preprocessCoverage}. It is only used when 
 #' \code{method='Matrix'}.
+#' @param ... Arguments passed to other methods.
 #'
 #' @details If \code{lowMemDir} is specified then \code{index} is expected to 
 #' specify the chunk number.
@@ -118,7 +119,7 @@
 #'
 
 fstats.apply <- function(index=Rle(TRUE, nrow(data)), data, mod, mod0, 
-    adjustF = 0, lowMemDir = NULL, method = "Matrix", scalefac = 32) {
+    adjustF = 0, lowMemDir = NULL, method = "Matrix", scalefac = 32 , ...) {
     
     ## Check for valid method
     stopifnot(method %in% c("Matrix", "Rle", "regular"))
