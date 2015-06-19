@@ -2,15 +2,14 @@
 #'
 #' Extract chunks from a DataFrame and get the F-statistics on the rows of 
 #' \code{data}, comparing the models \code{mod} (alternative) and \code{mod0} 
-#' (null). This is a helper function for \link[derfinder]{calculateStats} and 
-#' \link[derfinder]{calculatePvalues}.
+#' (null).
 #'
 #' @param index An index (logical Rle is the best for saving memory) indicating 
 #' which rows of the DataFrame to use.
 #' @param data The DataFrame containing the coverage information. Normally 
 #' stored in \code{coveragePrep$coverageProcessed} from 
-#' \link[derfinder]{preprocessCoverage}. Could also be the full data from 
-#' \link[derfinder]{loadCoverage}.
+#' \code{derfinder::preprocessCoverage}. Could also be the full data from 
+#' \code{derfinder::loadCoverage}.
 #' @param mod The design matrix for the alternative model. Should be m by p 
 #' where p is the number of covariates (normally also including the intercept).
 #' @param mod0 The design matrix for the null model. Should be m by p_0.
@@ -18,11 +17,11 @@
 #' the F-stat calculation. Useful when the Residual Sum of Squares of the 
 #' alternative model is very small.
 #' @param lowMemDir The directory where the processed chunks are saved when 
-#' using \link[derfinder]{preprocessCoverage} with a specified \code{lowMemDir}.
+#' using \code{derfinder::preprocessCoverage} with a specified \code{lowMemDir}.
 #' @param method Has to be either 'Matrix' (default), 'Rle' or 'regular'. See 
 #' details.
 #' @param scalefac The scaling factor used in 
-#' \link[derfinder]{preprocessCoverage}. It is only used when 
+#' \code{derfinder::preprocessCoverage}. It is only used when 
 #' \code{method='Matrix'}.
 #'
 #' @details If \code{lowMemDir} is specified then \code{index} is expected to 
@@ -63,7 +62,6 @@
 #' @importFrom Matrix sparseMatrix
 #' @importMethodsFrom Matrix '%*%' drop as.matrix
 #' @import IRanges
-#' @seealso \link[derfinder]{calculateStats}, \link[derfinder]{calculatePvalues}
 #'
 #' @examples
 #' ## Create some toy data

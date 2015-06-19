@@ -12,8 +12,8 @@ which rows of the DataFrame to use.}
 
 \item{data}{The DataFrame containing the coverage information. Normally
 stored in \code{coveragePrep$coverageProcessed} from
-\link[derfinder]{preprocessCoverage}. Could also be the full data from
-\link[derfinder]{loadCoverage}.}
+\code{derfinder::preprocessCoverage}. Could also be the full data from
+\code{derfinder::loadCoverage}.}
 
 \item{mod}{The design matrix for the alternative model. Should be m by p
 where p is the number of covariates (normally also including the intercept).}
@@ -25,13 +25,13 @@ the F-stat calculation. Useful when the Residual Sum of Squares of the
 alternative model is very small.}
 
 \item{lowMemDir}{The directory where the processed chunks are saved when
-using \link[derfinder]{preprocessCoverage} with a specified \code{lowMemDir}.}
+using \code{derfinder::preprocessCoverage} with a specified \code{lowMemDir}.}
 
 \item{method}{Has to be either 'Matrix' (default), 'Rle' or 'regular'. See
 details.}
 
 \item{scalefac}{The scaling factor used in
-\link[derfinder]{preprocessCoverage}. It is only used when
+\code{derfinder::preprocessCoverage}. It is only used when
 \code{method='Matrix'}.}
 }
 \value{
@@ -41,8 +41,7 @@ question.
 \description{
 Extract chunks from a DataFrame and get the F-statistics on the rows of
 \code{data}, comparing the models \code{mod} (alternative) and \code{mod0}
-(null). This is a helper function for \link[derfinder]{calculateStats} and
-\link[derfinder]{calculatePvalues}.
+(null).
 }
 \details{
 If \code{lowMemDir} is specified then \code{index} is expected to
@@ -124,8 +123,5 @@ summary(fstats.Rle - fstats.Matrix)
 }
 \author{
 Leonardo Collado-Torres, Jeff Leek
-}
-\seealso{
-\link[derfinder]{calculateStats}, \link[derfinder]{calculatePvalues}
 }
 
