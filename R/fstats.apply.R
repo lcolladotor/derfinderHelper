@@ -61,7 +61,7 @@
 #' @importMethodsFrom IRanges as.data.frame as.matrix Reduce ncol nrow which '['
 #' unlist
 #' @importFrom Matrix sparseMatrix
-#' @importMethodsFrom Matrix '%*%' drop
+#' @importMethodsFrom Matrix '%*%' drop as.matrix
 #' @import IRanges
 #' @seealso \link[derfinder]{calculateStats}, \link[derfinder]{calculatePvalues}
 #'
@@ -109,7 +109,7 @@ fstats.apply <- function(index=Rle(TRUE, nrow(data)), data, mod, mod0,
     ## Load the chunk file
     if(!is.null(lowMemDir)) {
         data <- .loadChunk(lowMemDir = lowMemDir, index = index)
-    } else{
+    } else {
         if(!all(index)) {
             ##  Subset the DataFrame to the current chunk 
             data <- data[index, ]
@@ -141,11 +141,17 @@ fstats.apply <- function(index=Rle(TRUE, nrow(data)), data, mod, mod0,
     
     ## Transform data
     if(useMethod == "Matrix") {
-        data <- .transformSparseMatrix(data = data, scalefac = scalefac)
+        if(!is(data, "dgCMatrix")) {
+            data <- .transformSparseMatrix(data = data, scalefac = scalefac)
+        }
     } else if (useMethod == "regular") {
         ##  Transform to a regular matrix
-        data <- as.matrix(as.data.frame(data))
-    }    
+        if(!is(data, "dgCMatrix")) {
+            data <- as.matrix(as.data.frame(data))
+        } else {
+            data <- as.matrix(data)
+        }
+    }
     
     ## How to calculate RSS and F-stats
     calculateMethod <- useMethod == "Matrix" | useMethod == "regular"
