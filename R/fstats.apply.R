@@ -57,8 +57,8 @@
 #' @author Leonardo Collado-Torres, Jeff Leek
 #' @export
 #' @importFrom S4Vectors Rle
-#' @importMethodsFrom S4Vectors as.numeric
-#' @importMethodsFrom IRanges as.data.frame as.matrix Reduce ncol nrow which '['
+#' @importMethodsFrom S4Vectors as.numeric Reduce
+#' @importMethodsFrom IRanges as.data.frame as.matrix ncol nrow which '['
 #' unlist
 #' @importFrom Matrix sparseMatrix
 #' @importMethodsFrom Matrix '%*%' drop as.matrix
@@ -66,7 +66,27 @@
 #' @seealso \link[derfinder]{calculateStats}, \link[derfinder]{calculatePvalues}
 #'
 #' @examples
-#' ## Load data
+#' ## Create some toy data
+#' library('IRanges')
+#' toyData <- DataFrame(
+#'     'sample1' = Rle(sample(0:10, 1000, TRUE)),
+#'     'sample2' = Rle(sample(0:10, 1000, TRUE)),
+#'     'sample3' = Rle(sample(0:10, 1000, TRUE)),
+#'     'sample4' = Rle(sample(0:10, 1000, TRUE)))
+#'
+#' ## Create the model matrices
+#' group <- c('A', 'A', 'B', 'B')
+#' mod.toy <- model.matrix(~ group) 
+#' mod0.toy <- model.matrix(~ 0 + rep(1, 4))
+#'
+#' ## Get the F-statistics
+#' fstats <- fstats.apply(data = toyData, mod = mod.toy, mod0 = mod0.toy, 
+#'     scalefac = 1)
+#' 
+#'
+#' ## Example with data from derfinder package
+#' \dontrun{
+#' ## Load the data
 #' library('derfinder')
 #'
 #' ## Create the model matrices
@@ -94,6 +114,8 @@
 #' 
 #' ## Extra comparison, although the method to compare against is 'regular'
 #' summary(fstats.Rle - fstats.Matrix)
+#' } 
+#'
 
 fstats.apply <- function(index=Rle(TRUE, nrow(data)), data, mod, mod0, 
     adjustF = 0, lowMemDir = NULL, method = "Matrix", scalefac = 32) {
@@ -179,6 +201,7 @@ fstats.apply <- function(index=Rle(TRUE, nrow(data)), data, mod, mod0,
 
 ## Load chunk
 .loadChunk <- function(lowMemDir, index) {
+    chunkProcessed <- NULL
     load(file.path(lowMemDir, paste0("chunk", index, ".Rdata")))
     return(chunkProcessed)
 }
