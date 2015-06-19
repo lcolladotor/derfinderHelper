@@ -76,12 +76,12 @@ library('derfinder')
 ## Create the model matrices
 mod <- model.matrix(~ genomeInfo$pop)
 mod0 <- model.matrix(~ 0 + rep(1, nrow(genomeInfo)))
+
 ## Run the function
 system.time(fstats.Matrix <- fstats.apply(data=genomeData$coverage, mod=mod,
     mod0=mod0, method='Matrix', scalefac = 1))
 fstats.Matrix
 
-\dontrun{
 ## Compare methods
 system.time(fstats.regular <- fstats.apply(data=genomeData$coverage,
     mod=mod, mod0=mod0, method='regular'))
@@ -98,7 +98,6 @@ summary(fstats.regular - fstats.Rle)
 
 ## Extra comparison, although the method to compare against is 'regular'
 summary(fstats.Rle - fstats.Matrix)
-}
 }
 \author{
 Leonardo Collado-Torres, Jeff Leek

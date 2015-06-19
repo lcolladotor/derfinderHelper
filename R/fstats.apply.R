@@ -55,8 +55,7 @@
 #' @author Leonardo Collado-Torres, Jeff Leek
 #' @export
 #' @importFrom IRanges Rle
-#' @importMethodsFrom IRanges as.data.frame as.matrix Reduce ncol nrow
-#' @importMethodsFrom GenomicRanges '['
+#' @importMethodsFrom IRanges as.data.frame as.matrix Reduce ncol nrow which '['
 #' @importFrom Matrix sparseMatrix
 #' @importMethodsFrom Matrix '%*%' drop
 #' @seealso \link[derfinder]{calculateStats}, \link[derfinder]{calculatePvalues}
@@ -68,12 +67,12 @@
 #' ## Create the model matrices
 #' mod <- model.matrix(~ genomeInfo$pop)
 #' mod0 <- model.matrix(~ 0 + rep(1, nrow(genomeInfo)))
+#'
 #' ## Run the function
 #' system.time(fstats.Matrix <- fstats.apply(data=genomeData$coverage, mod=mod, 
 #'     mod0=mod0, method='Matrix', scalefac = 1))
 #' fstats.Matrix
 #' 
-#' \dontrun{
 #' ## Compare methods
 #' system.time(fstats.regular <- fstats.apply(data=genomeData$coverage, 
 #'     mod=mod, mod0=mod0, method='regular'))
@@ -90,7 +89,6 @@
 #' 
 #' ## Extra comparison, although the method to compare against is 'regular'
 #' summary(fstats.Rle - fstats.Matrix)
-#' }
 
 fstats.apply <- function(index=Rle(TRUE, nrow(data)), data, mod, mod0, 
     adjustF = 0, lowMemDir = NULL, method = "Matrix", scalefac = 32) {
