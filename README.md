@@ -12,7 +12,7 @@ Get R 3.1.1 or newer from [CRAN](http://cran.r-project.org/).
 install.packages('devtools')
 
 ## Pre-requisites from CRAN
-install.packages('Matrix', 'testthat')
+install.packages('Matrix', 'testthat', 'knitr', 'knitrBoostrap', 'rmarkdown')
 
 ## Pre-requisites from Bioconductor
 source('http://bioconductor.org/biocLite.R')
@@ -22,6 +22,18 @@ biocLite(c('IRanges', 'S4Vectors'))
 library('devtools')
 install_github('lcolladotor/derfinderHelper')
 ```
+
+# Vignette
+
+The vignette for this package can be viewed [here](http://lcolladotor.github.io/derfinderHelper/). If you want to re-build the vignette when installing this package, you will need to use:
+
+```R
+## Install building the vignette
+install_github('lcolladotor/derfinderHelper', build_vignettes = TRUE)
+```
+
+Note that this can take longer than installing the package without the vignette.
+
 
 # Citation
 
