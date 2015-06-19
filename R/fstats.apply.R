@@ -184,7 +184,6 @@ fstats.apply <- function(index=Rle(TRUE, nrow(data)), data, mod, mod0,
     j.list <- mapply(function(x, y) { rep(y, length(x)) }, i.list, seq_len(length(i.list)))
     i <- unlist(i.list, use.names=FALSE)
     j <- unlist(j.list, use.names=FALSE)
-    print(26); print(sessionInfo())
     x <- unlist(mapply(function(x, y) { as.numeric(x[y]) }, data, i.list), 
         use.names=FALSE) - scalefac.log2
         
