@@ -8,7 +8,7 @@ Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     email = "andrew.jaffe@libd.org"), person(c("Jeffrey", "T."), "Leek",
     role = c("aut", "ths"), email = "jtleek@gmail.com"))
 Depends:
-    R(>= 3.2)
+    R(>= 3.2.2)
 Imports:
     IRanges (>= 1.99.27),
     Matrix,
