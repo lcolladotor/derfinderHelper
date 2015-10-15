@@ -1,7 +1,7 @@
 Package: derfinderHelper
 Type: Package
 Title: derfinder helper package
-Version: 1.5.0
+Version: 1.3.1
 Date: 2015-06-19
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     = "lcollado@jhu.edu"), person(c("Andrew", "E."), "Jaffe", role = "aut",
