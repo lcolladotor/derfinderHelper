@@ -1,6 +1,6 @@
 ## Based on https://github.com/hadley/ggplot2/blob/master/R/zzz.r
 .onAttach <- function(...) {
-    if (!interactive() || stats::runif(1) <= 0.9900) return()
+    if (!interactive() || stats::runif(1) <= 0.99000) return()
         
     tips <- c(
         "Found a bug? Report it at https://github.com/lcolladotor/derfinderHelper/issues",
