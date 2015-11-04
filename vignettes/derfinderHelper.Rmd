@@ -34,11 +34,13 @@ bibs <- c(knitcitations = citation('knitcitations'),
     BiocStyle = citation('BiocStyle'), 
     knitr = citation('knitr')[3],
     rmarkdown = citation('rmarkdown'),
-    biocParallel = citation('BiocParallel'),
+    #BiocParallel = citation('BiocParallel'),
+    BiocParallel = BibEntry(bibtype = 'unpublished', key = 'BiocParallel', title = 'BiocParallel: Bioconductor facilities for parallel evaluation', author = 'Martin Morgan and Valerie Obenchain and Michel Lang and Ryan Thompson', note = 'R package version 1.5.0', year = '2015'),
     R = citation(),
     IRanges = citation('IRanges'),
     Matrix = citation('Matrix'),
-    S4Vectors = citation('S4Vectors'),
+    #S4Vectors = citation('S4Vectors'),
+    S4Vectors = BibEntry(bibtype = 'unpublished', key = 'S4Vectors', title = 'S4Vectors: S4 implementation of vectors and lists', author = 'H. Pages and M. Lawrence and P. Aboyoun', note = 'R package version 0.9.6', year = '2015'),
     devtools = citation('devtools'),
     testthat = citation('testthat'))
 write.bibtex(bibs,
@@ -139,7 +141,7 @@ We can then proceed to use this information in `r Biocpkg('derfinder')` or in an
 
 # Details
 
-We created `r Biocpkg('derfinderHelper')` for calculating F-statistics using `SnowParam()` from `r Biocpkg('BiocParallel')` `r citep(bib[['biocParallel']])`. Using this form of parallelization requires loading the necessary packages in the child processes. Because `r Biocpkg('derfinder')` takes a long time to load, we shipped off `fstats.apply()` to its own package to improve the speed of the calculations while retaining the memory advantages of `SnowParam()` over `MulticoreParam()`.
+We created `r Biocpkg('derfinderHelper')` for calculating F-statistics using `SnowParam()` from `r Biocpkg('BiocParallel')` `r citep(bib[['BiocParallel']])`. Using this form of parallelization requires loading the necessary packages in the child processes. Because `r Biocpkg('derfinder')` takes a long time to load, we shipped off `fstats.apply()` to its own package to improve the speed of the calculations while retaining the memory advantages of `SnowParam()` over `MulticoreParam()`.
 
 Note that transforming the data from a `DataFrame` to a `dgCMatrix` takes some time, so the most efficient performance is achieved when the data is converted at the beginning instead of at every permutation calculation. This is done in `derfinder::preprocessCoverage()` when `lowMemDir` is specified.
 
