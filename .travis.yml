@@ -5,6 +5,7 @@ r:
 warnings_are_errors: false
 sudo: false
 bioc_use_devel: true
+cache: packages
 
 bioc_required: true
 bioc_packages:
