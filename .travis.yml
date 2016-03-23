@@ -5,7 +5,6 @@ warnings_are_errors: false
 sudo: false
 cache: packages
 
-bioc_required: true
 bioc_packages:
   - BiocParallel
 r_packages:
