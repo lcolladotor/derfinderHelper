@@ -16,20 +16,18 @@ c(
         note = pkgVer('derfinderHelper', '1.5.2')
     ),
     bibentry(bibtype="article",
-        title = "Flexible expressed region analysis for RNA-seq with derfinder",
+        title = "derfinder: Software for annotation-agnostic RNA-seq differential expression analysis",
         author = personList(
             as.person("Leonardo Collado-Torres"),
-            as.person("Abhinav Nellore"),
             as.person("Alyssa C. Frazee"),
-            as.person("Christopher Wilks"),
             as.person("Michael I. Love"),
             as.person("Rafael A. Irizarry"),
-            as.person("Jeffrey T. Leek"),
-            as.person("Andrew E. Jaffe")
+            as.person("Andrew E. Jaffe"),
+            as.person("Jeffrey T. Leek")
         ),
-        year = 2016,
+        year = 2015,
         journal = "bioRxiv",
         doi = "10.1101/015370",
-        url = "http://biorxiv.org/content/early/2016/05/07/015370"
+        url = "http://www.biorxiv.org/content/early/2015/02/19/015370.abstract"
     )
 )
