@@ -62,6 +62,7 @@
 #' @importFrom Matrix sparseMatrix
 #' @importMethodsFrom Matrix '%*%' drop as.matrix
 #' @import IRanges
+#' @importFrom methods is
 #'
 #' @examples
 #' ## Create some toy data

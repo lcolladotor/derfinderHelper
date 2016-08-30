@@ -12,6 +12,7 @@ Depends:
 Imports:
     IRanges (>= 1.99.27),
     Matrix,
+    methods,
     S4Vectors (>= 0.2.2)
 Suggests:
     devtools (>= 1.6),
@@ -28,3 +29,4 @@ LazyData: false
 URL: https://github.com/leekgroup/derfinderHelper
 BugReports: https://github.com/leekgroup/derfinderHelper/issues
 biocViews: DifferentialExpression, Sequencing, RNASeq, Software
+RoxygenNote: 5.0.1
