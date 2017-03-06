@@ -82,8 +82,6 @@ names(bib) <- names(bibs)
 ```
 
 
-# Overview
-
 
 `r Biocpkg('derfinderHelper')` `r citep(bib[['derfinderHelper']])` is a small package that was created to speed up the F-statistics approach implemented in the parent package `r Biocpkg('derfinder')`. It contains a single function, `fstats.apply()`, which is used to calculate the F-statistics for a given data matrix, null and an alternative models.
 
