@@ -13,7 +13,7 @@ Helper package for [derfinder](http://www.bioconductor.org/packages/derfinder).
 
 # Installation instructions
 
-Get R 3.3.x from [CRAN](http://cran.r-project.org/).
+Get R 3.4.x from [CRAN](http://cran.r-project.org/).
 
 ```R
 ## From Bioconductor
