@@ -7,7 +7,7 @@ author:
     - &ccb Center for Computational Biology, Johns Hopkins University
     email: leo.collado@libd.org
 output: 
-  BiocStyle::html_document2:
+  BiocStyle::html_document:
     self_contained: yes
     toc: true
     toc_float: true
@@ -247,7 +247,7 @@ with `r CRANpkg('knitr')` `r citep(bib[['knitr']])` and `r CRANpkg('rmarkdown')`
 
 Citations made with `r CRANpkg('knitcitations')` `r citep(bib[['knitcitations']])`.
 
-```{r vignetteBiblio, results = 'asis', echo = FALSE, warning = FALSE}
+```{r vignetteBiblio, results = 'asis', echo = FALSE, warning = FALSE, message = FALSE}
 ## Print bibliography
 bibliography()
 ```
