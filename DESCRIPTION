@@ -1,8 +1,13 @@
 Package: derfinderHelper
 Type: Package
 Title: derfinder helper package
+<<<<<<< HEAD
 Version: 1.11.2
 Date: 2017-08-21
+=======
+Version: 1.11.1
+Date: 2017-08-07
+>>>>>>> upstream/master
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     = "lcollado@jhu.edu"), person(c("Andrew", "E."), "Jaffe", role = "aut",
     email = "andrew.jaffe@libd.org"), person(c("Jeffrey", "T."), "Leek",
