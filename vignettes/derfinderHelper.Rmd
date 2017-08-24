@@ -71,7 +71,7 @@ cite_options(hyperlink = 'to.doc', citation_format = 'text', style = 'html')
 # https://github.com/cboettig/knitcitations/issues/63
 
 ## Write bibliography information
-bibs <- c(knitcitations = citation('knitcitations'),
+bib <- c(knitcitations = citation('knitcitations'),
     derfinderHelper = citation('derfinderHelper')[1], 
     BiocStyle = citation('BiocStyle'),
     knitr = citation('knitr')[3],
@@ -83,12 +83,7 @@ bibs <- c(knitcitations = citation('knitcitations'),
     S4Vectors = citation('S4Vectors'),
     devtools = citation('devtools'),
     testthat = citation('testthat'))
-write.bibtex(bibs,
-    file = 'derfinderHelperRef.bib')
-bib <- read.bibtex('derfinderHelperRef.bib')
-
-## Assign short names
-names(bib) <- names(bibs)
+write.bibtex(bib, file = 'derfinderHelperRef.bib')
 ```
 
 
