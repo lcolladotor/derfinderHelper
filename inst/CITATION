@@ -11,9 +11,10 @@ c(
             as.person("Andrew E. Jaffe"),
             as.person("Jeffrey T. Leek")
         ),
-        year = 2015,
+        year = 2017,
         url = "http://www.bioconductor.org/packages/derfinderHelper",
-        note = pkgVer('derfinderHelper')
+        note = pkgVer('derfinderHelper'),
+        doi = '10.18129/B9.bioc.derfinderHelper'
     ),
     bibentry(bibtype="article",
         title = "Flexible expressed region analysis for RNA-seq with derfinder",
