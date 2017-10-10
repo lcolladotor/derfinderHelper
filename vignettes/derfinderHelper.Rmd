@@ -80,7 +80,10 @@ bib <- c(knitcitations = citation('knitcitations'),
     R = citation(),
     IRanges = citation('IRanges'),
     Matrix = citation('Matrix'),
-    S4Vectors = citation('S4Vectors'),
+    S4Vectors = RefManageR::BibEntry(bibtype = 'manual', key = 'S4Vectors',
+        author = 'Hervé Pagès and Michael Lawrence and Patrick Aboyoun',
+        title = "S4Vectors: S4 implementation of vector-like and list-like objects",
+        year = 2017, doi = '10.18129/B9.bioc.S4Vectors'),
     devtools = citation('devtools'),
     testthat = citation('testthat'))
 write.bibtex(bib, file = 'derfinderHelperRef.bib')
