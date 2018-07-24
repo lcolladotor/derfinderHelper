@@ -13,12 +13,12 @@ Helper package for [derfinder](http://www.bioconductor.org/packages/derfinder).
 
 # Installation instructions
 
-Get R 3.4.x from [CRAN](http://cran.r-project.org/).
+Get R 3.5.x from [CRAN](http://cran.r-project.org/).
 
 ```R
 ## From Bioconductor
-source('http://bioconductor.org/biocLite.R')
-biocLite('derfinderHelper')
+install.packages("BiocManager")
+BiocManager::install('derfinderHelper')
 ```
 
 # Vignette
