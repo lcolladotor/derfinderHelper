@@ -83,7 +83,7 @@ bib <- c(knitcitations = citation('knitcitations'),
         author = 'Hervé Pagès and Michael Lawrence and Patrick Aboyoun',
         title = "S4Vectors: S4 implementation of vector-like and list-like objects",
         year = 2017, doi = '10.18129/B9.bioc.S4Vectors'),
-    devtools = citation('devtools'),
+    sessioninfo = citation('sessioninfo'),
     testthat = citation('testthat'))
 write.bibtex(bib, file = 'derfinderHelperRef.bib')
 ```
@@ -188,7 +188,7 @@ This package was made possible thanks to:
 * `r Biocpkg('IRanges')` `r citep(bib[['IRanges']])`
 * `r CRANpkg('Matrix')` `r citep(bib[['Matrix']])`
 * `r Biocpkg('S4Vectors')` `r citep(bib[['S4Vectors']])`
-* `r CRANpkg('devtools')` `r citep(bib[['devtools']])`
+* `r CRANpkg('sessioninfo')` `r citep(bib[['sessioninfo']])`
 * `r CRANpkg('knitcitations')` `r citep(bib[['knitcitations']])`
 * `r CRANpkg('knitr')` `r citep(bib[['knitr']])`
 * `r Biocpkg('BiocStyle')` `r citep(bib[['BiocStyle']])`
@@ -232,7 +232,7 @@ round(totalTime, digits=3)
 
 ```{r reproducibility3, echo=FALSE}
 ## Session info
-library('devtools')
+library('sessioninfo')
 options(width = 120)
 session_info()
 ```
