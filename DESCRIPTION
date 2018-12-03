@@ -1,8 +1,8 @@
 Package: derfinderHelper
 Type: Package
 Title: derfinder helper package
-Version: 1.17.0
-Date: 2018-09-24
+Version: 1.17.1
+Date: 2018-12-03
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     = "lcollado@jhu.edu"), person(c("Andrew", "E."), "Jaffe", role = "aut",
     email = "andrew.jaffe@libd.org"), person(c("Jeffrey", "T."), "Leek",
@@ -28,5 +28,5 @@ License: Artistic-2.0
 LazyData: false
 URL: https://github.com/leekgroup/derfinderHelper
 BugReports: https://support.bioconductor.org/t/derfinderHelper
-biocViews: DifferentialExpression, Sequencing, RNASeq, Software
+biocViews: DifferentialExpression, Sequencing, RNASeq, Software, ImmunoOncology
 RoxygenNote: 5.0.1
