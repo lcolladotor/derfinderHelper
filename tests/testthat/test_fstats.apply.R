@@ -1,5 +1,6 @@
 ## Setup1
 suppressPackageStartupMessages(library('IRanges'))
+suppressWarnings(RNGversion("3.5.0"))
 set.seed(20140916)
 toyData <- DataFrame(
     'sample1' = Rle(sample(0:10, 1000, TRUE)),
