@@ -9,7 +9,7 @@ Helper package for speeding up the derfinder package when using multiple
 cores.
 }
 \author{
-Leonardo Collado-Torres <lcollado@jhu.edu>
+Leonardo Collado-Torres <lcolladotor@gmail.com>
 }
 \keyword{package}
 
