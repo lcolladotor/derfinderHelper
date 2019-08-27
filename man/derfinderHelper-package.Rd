@@ -5,11 +5,10 @@
 \alias{derfinderHelper-package}
 \title{derfinder helper package}
 \description{
-Helper package for speeding up the derfinder package when using multiple 
+Helper package for speeding up the derfinder package when using multiple
 cores.
 }
 \author{
-Leonardo Collado-Torres <lcolladotor@gmail.com>
+Leonardo Collado-Torres \href{mailto:lcolladotor@gmail.com}{lcolladotor@gmail.com}
 }
 \keyword{package}
-

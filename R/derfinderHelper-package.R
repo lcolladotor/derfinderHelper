@@ -6,7 +6,7 @@
 #' @name derfinderHelper-package
 #' @aliases derfinderHelper-package
 #' @docType package
-#' @author Leonardo Collado-Torres <lcollado@@jhu.edu>
+#' @author Leonardo Collado-Torres <lcolladotor@@gmail.com>
 #'
 #'
 #' @keywords package

@@ -1,8 +1,8 @@
 Package: derfinderHelper
 Type: Package
 Title: derfinder helper package
-Version: 1.19.1
-Date: 2019-05-22
+Version: 1.19.2
+Date: 2019-08-27
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     = "lcolladotor@gmail.com", comment = c(ORCID = "0000-0003-2140-308X")),
     person(c("Andrew", "E."), "Jaffe", role = "aut",
@@ -31,4 +31,6 @@ LazyData: false
 URL: https://github.com/leekgroup/derfinderHelper
 BugReports: https://support.bioconductor.org/t/derfinderHelper
 biocViews: DifferentialExpression, Sequencing, RNASeq, Software, ImmunoOncology
-RoxygenNote: 5.0.1
+RoxygenNote: 6.1.1
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)

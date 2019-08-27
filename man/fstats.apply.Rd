@@ -4,71 +4,71 @@
 \alias{fstats.apply}
 \title{Calculate F-statistics per base by extracting chunks from a DataFrame}
 \usage{
-fstats.apply(index = Rle(TRUE, nrow(data)), data, mod, mod0, adjustF = 0,
-  lowMemDir = NULL, method = "Matrix", scalefac = 32)
+fstats.apply(index = Rle(TRUE, nrow(data)), data, mod, mod0,
+  adjustF = 0, lowMemDir = NULL, method = "Matrix", scalefac = 32)
 }
 \arguments{
-\item{index}{An index (logical Rle is the best for saving memory) indicating 
+\item{index}{An index (logical Rle is the best for saving memory) indicating
 which rows of the DataFrame to use.}
 
-\item{data}{The DataFrame containing the coverage information. Normally 
-stored in \code{coveragePrep$coverageProcessed} from 
-\code{derfinder::preprocessCoverage}. Could also be the full data from 
+\item{data}{The DataFrame containing the coverage information. Normally
+stored in \code{coveragePrep$coverageProcessed} from
+\code{derfinder::preprocessCoverage}. Could also be the full data from
 \code{derfinder::loadCoverage}.}
 
-\item{mod}{The design matrix for the alternative model. Should be m by p 
+\item{mod}{The design matrix for the alternative model. Should be m by p
 where p is the number of covariates (normally also including the intercept).}
 
 \item{mod0}{The design matrix for the null model. Should be m by p_0.}
 
-\item{adjustF}{A single value to adjust that is added in the denominator of 
-the F-stat calculation. Useful when the Residual Sum of Squares of the 
+\item{adjustF}{A single value to adjust that is added in the denominator of
+the F-stat calculation. Useful when the Residual Sum of Squares of the
 alternative model is very small.}
 
-\item{lowMemDir}{The directory where the processed chunks are saved when 
+\item{lowMemDir}{The directory where the processed chunks are saved when
 using \code{derfinder::preprocessCoverage} with a specified \code{lowMemDir}.}
 
-\item{method}{Has to be either 'Matrix' (default), 'Rle' or 'regular'. See 
+\item{method}{Has to be either 'Matrix' (default), 'Rle' or 'regular'. See
 details.}
 
-\item{scalefac}{The scaling factor used in 
-\code{derfinder::preprocessCoverage}. It is only used when 
+\item{scalefac}{The scaling factor used in
+\code{derfinder::preprocessCoverage}. It is only used when
 \code{method='Matrix'}.}
 }
 \value{
-A numeric Rle with the F-statistics per base for the chunk in 
+A numeric Rle with the F-statistics per base for the chunk in
 question.
 }
 \description{
-Extract chunks from a DataFrame and get the F-statistics on the rows of 
-\code{data}, comparing the models \code{mod} (alternative) and \code{mod0} 
+Extract chunks from a DataFrame and get the F-statistics on the rows of
+\code{data}, comparing the models \code{mod} (alternative) and \code{mod0}
 (null).
 }
 \details{
-If \code{lowMemDir} is specified then \code{index} is expected to 
+If \code{lowMemDir} is specified then \code{index} is expected to
 specify the chunk number.
 
-\link{fstats.apply} has three different implemenations which are controlled 
-by the \code{method} parameter. \code{method='regular'} coerces the data to 
-a standard 'matrix' object. \code{method='Matrix'} coerces the data to a 
-\link[Matrix]{sparseMatrix} which reduces the required memory. This method 
-is only usable when the projection matrices have row sums equal to 0. Note 
-that these row sums are not exactly 0 due to how the computer works, thus 
-leading to very small numerical differences in the F-statistics calculated 
-versus \code{method='regular'}. Finally, \code{method='Rle'} calculates the 
-F-statistics using the Rle compressed data without coercing it to other 
-types of objects, thus using less memory that the other methods. However, 
-it's speed is affected by the number of samples (n) as the current 
-implementation requires n (n + 1) operations, so it's only recommended for 
-small data sets. \code{method='Rle'} does result in small numerical 
+\link{fstats.apply} has three different implemenations which are controlled
+by the \code{method} parameter. \code{method='regular'} coerces the data to
+a standard 'matrix' object. \code{method='Matrix'} coerces the data to a
+\link[Matrix:sparseMatrix]{sparseMatrix} which reduces the required memory. This method
+is only usable when the projection matrices have row sums equal to 0. Note
+that these row sums are not exactly 0 due to how the computer works, thus
+leading to very small numerical differences in the F-statistics calculated
+versus \code{method='regular'}. Finally, \code{method='Rle'} calculates the
+F-statistics using the Rle compressed data without coercing it to other
+types of objects, thus using less memory that the other methods. However,
+it's speed is affected by the number of samples (n) as the current
+implementation requires n (n + 1) operations, so it's only recommended for
+small data sets. \code{method='Rle'} does result in small numerical
 differences versus \code{method='regular'}.
 
-Overall \code{method='Matrix'} is faster than the other options and requires 
+Overall \code{method='Matrix'} is faster than the other options and requires
 less memory than \code{method='regular'}. With tiny example data sets,
 \code{method='Matrix'} can be slower than \code{method='regular'} because the
 coercion step is slower.
 
-In derfinder versions <= 0.0.62, \code{method='regular'} was the only option 
+In derfinder versions <= 0.0.62, \code{method='regular'} was the only option
 available.
 }
 \examples{
@@ -126,4 +126,3 @@ summary(fstats.Rle - fstats.Matrix)
 \author{
 Leonardo Collado-Torres, Jeff Leek
 }
-
