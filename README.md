@@ -17,8 +17,10 @@ Get R 3.5.x from [CRAN](http://cran.r-project.org/).
 
 ```R
 ## From Bioconductor
-install.packages("BiocManager")
-BiocManager::install('derfinderHelper')
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("derfinderHelper")
 ```
 
 # Vignette
