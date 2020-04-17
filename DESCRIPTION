@@ -22,7 +22,8 @@ Suggests:
     knitr (>= 1.6),
     BiocStyle (>= 2.5.19),
     rmarkdown (>= 0.3.3),
-    testthat
+    testthat,
+    covr
 VignetteBuilder: knitr
 Description: Helper package for speeding up the derfinder package when using
     multiple cores.
@@ -31,6 +32,6 @@ LazyData: false
 URL: https://github.com/leekgroup/derfinderHelper
 BugReports: https://support.bioconductor.org/t/derfinderHelper
 biocViews: DifferentialExpression, Sequencing, RNASeq, Software, ImmunoOncology
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

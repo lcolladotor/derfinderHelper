@@ -2,13 +2,29 @@
 % Please edit documentation in R/derfinderHelper-package.R
 \docType{package}
 \name{derfinderHelper-package}
+\alias{derfinderHelper}
 \alias{derfinderHelper-package}
-\title{derfinder helper package}
+\title{derfinderHelper: derfinder helper package}
 \description{
-Helper package for speeding up the derfinder package when using multiple
-cores.
+Helper package for speeding up the derfinder package when using
+    multiple cores.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/leekgroup/derfinderHelper}
+  \item Report bugs at \url{https://support.bioconductor.org/t/derfinderHelper}
+}
+
 }
 \author{
-Leonardo Collado-Torres \href{mailto:lcolladotor@gmail.com}{lcolladotor@gmail.com}
+\strong{Maintainer}: Leonardo Collado-Torres \email{lcolladotor@gmail.com} (\href{https://orcid.org/0000-0003-2140-308X}{ORCID})
+
+Authors:
+\itemize{
+  \item Andrew E. Jaffe \email{andrew.jaffe@libd.org} (\href{https://orcid.org/0000-0001-6886-1454}{ORCID})
+  \item Jeffrey T. Leek \email{jtleek@gmail.com} (\href{https://orcid.org/0000-0002-2873-2671}{ORCID}) [thesis advisor]
 }
-\keyword{package}
+
+}
+\keyword{internal}

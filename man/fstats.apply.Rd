@@ -4,8 +4,16 @@
 \alias{fstats.apply}
 \title{Calculate F-statistics per base by extracting chunks from a DataFrame}
 \usage{
-fstats.apply(index = Rle(TRUE, nrow(data)), data, mod, mod0,
-  adjustF = 0, lowMemDir = NULL, method = "Matrix", scalefac = 32)
+fstats.apply(
+  index = Rle(TRUE, nrow(data)),
+  data,
+  mod,
+  mod0,
+  adjustF = 0,
+  lowMemDir = NULL,
+  method = "Matrix",
+  scalefac = 32
+)
 }
 \arguments{
 \item{index}{An index (logical Rle is the best for saving memory) indicating
@@ -73,54 +81,63 @@ available.
 }
 \examples{
 ## Create some toy data
-library('IRanges')
+library("IRanges")
 toyData <- DataFrame(
-    'sample1' = Rle(sample(0:10, 1000, TRUE)),
-    'sample2' = Rle(sample(0:10, 1000, TRUE)),
-    'sample3' = Rle(sample(0:10, 1000, TRUE)),
-    'sample4' = Rle(sample(0:10, 1000, TRUE)))
+    "sample1" = Rle(sample(0:10, 1000, TRUE)),
+    "sample2" = Rle(sample(0:10, 1000, TRUE)),
+    "sample3" = Rle(sample(0:10, 1000, TRUE)),
+    "sample4" = Rle(sample(0:10, 1000, TRUE))
+)
 
 ## Create the model matrices
-group <- c('A', 'A', 'B', 'B')
-mod.toy <- model.matrix(~ group) 
+group <- c("A", "A", "B", "B")
+mod.toy <- model.matrix(~group)
 mod0.toy <- model.matrix(~ 0 + rep(1, 4))
 
 ## Get the F-statistics
-fstats <- fstats.apply(data = toyData, mod = mod.toy, mod0 = mod0.toy, 
-    scalefac = 1)
+fstats <- fstats.apply(
+    data = toyData, mod = mod.toy, mod0 = mod0.toy,
+    scalefac = 1
+)
 
 
 ## Example with data from derfinder package
 \dontrun{
 ## Load the data
-library('derfinder')
+library("derfinder")
 
 ## Create the model matrices
 mod <- model.matrix(~ genomeInfo$pop)
 mod0 <- model.matrix(~ 0 + rep(1, nrow(genomeInfo)))
 
 ## Run the function
-system.time(fstats.Matrix <- fstats.apply(data=genomeData$coverage, mod=mod, 
-    mod0=mod0, method='Matrix', scalefac = 1))
+system.time(fstats.Matrix <- fstats.apply(
+    data = genomeData$coverage, mod = mod,
+    mod0 = mod0, method = "Matrix", scalefac = 1
+))
 fstats.Matrix
 
 ## Compare methods
-system.time(fstats.regular <- fstats.apply(data=genomeData$coverage, 
-    mod=mod, mod0=mod0, method='regular'))
-system.time(fstats.Rle <- fstats.apply(data=genomeData$coverage, mod=mod, 
-    mod0=mod0, method='Rle'))
+system.time(fstats.regular <- fstats.apply(
+    data = genomeData$coverage,
+    mod = mod, mod0 = mod0, method = "regular"
+))
+system.time(fstats.Rle <- fstats.apply(
+    data = genomeData$coverage, mod = mod,
+    mod0 = mod0, method = "Rle"
+))
 
 ## Small numerical differences can occur
 summary(fstats.regular - fstats.Matrix)
 summary(fstats.regular - fstats.Rle)
 
-## You can make the effect negligible by appropriately rounding 
-## findRegions(cutoff) so the DERs will be the same regardless of the method 
+## You can make the effect negligible by appropriately rounding
+## findRegions(cutoff) so the DERs will be the same regardless of the method
 ## used.
 
 ## Extra comparison, although the method to compare against is 'regular'
 summary(fstats.Rle - fstats.Matrix)
-} 
+}
 
 }
 \author{

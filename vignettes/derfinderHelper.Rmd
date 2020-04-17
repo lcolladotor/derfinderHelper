@@ -28,8 +28,9 @@ vignette: >
 `R` is an open-source statistical environment which can be easily modified to enhance its functionality via packages. `r Biocpkg('derfinderHelper')` is a `R` package available via the [Bioconductor](http://bioconductor/packages/derfinderHelper) repository for packages. `R` can be installed on any operating system from [CRAN](https://cran.r-project.org/) after which you can install `r Biocpkg('derfinderHelper')` by using the following commands in your `R` session:
 
 ```{r 'installDer', eval = FALSE}
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
+if (!requireNamespace("BiocManager", quietly = TRUE)) {
+      install.packages("BiocManager")
+  }
 
 BiocManager::install("derfinderHelper")
 
@@ -53,7 +54,7 @@ We hope that `r Biocpkg('derfinderHelper')` will be useful for your research. Pl
 
 ```{r 'citation'}
 ## Citation info
-citation('derfinderHelper')
+citation("derfinderHelper")
 ```
 
 # Introduction to `r Biocpkg('derfinderHelper')`
@@ -63,31 +64,35 @@ citation('derfinderHelper')
 startTime <- Sys.time()
 
 ## Bib setup
-library('knitcitations')
+library("knitcitations")
 
 ## Load knitcitations with a clean bibliography
 cleanbib()
-cite_options(hyperlink = 'to.doc', citation_format = 'text', style = 'html')
+cite_options(hyperlink = "to.doc", citation_format = "text", style = "html")
 # Note links won't show for now due to the following issue
 # https://github.com/cboettig/knitcitations/issues/63
 
 ## Write bibliography information
-bib <- c(knitcitations = citation('knitcitations'),
-    derfinderHelper = citation('derfinderHelper')[1], 
-    BiocStyle = citation('BiocStyle'),
-    knitr = citation('knitr')[3],
-    rmarkdown = citation('rmarkdown'),
-    BiocParallel = citation('BiocParallel'),
+bib <- c(
+    knitcitations = citation("knitcitations"),
+    derfinderHelper = citation("derfinderHelper")[1],
+    BiocStyle = citation("BiocStyle"),
+    knitr = citation("knitr")[3],
+    rmarkdown = citation("rmarkdown"),
+    BiocParallel = citation("BiocParallel"),
     R = citation(),
-    IRanges = citation('IRanges'),
-    Matrix = citation('Matrix'),
-    S4Vectors = RefManageR::BibEntry(bibtype = 'manual', key = 'S4Vectors',
-        author = 'Hervé Pagès and Michael Lawrence and Patrick Aboyoun',
+    IRanges = citation("IRanges"),
+    Matrix = citation("Matrix"),
+    S4Vectors = RefManageR::BibEntry(
+        bibtype = "manual", key = "S4Vectors",
+        author = "Hervé Pagès and Michael Lawrence and Patrick Aboyoun",
         title = "S4Vectors: S4 implementation of vector-like and list-like objects",
-        year = 2017, doi = '10.18129/B9.bioc.S4Vectors'),
-    sessioninfo = citation('sessioninfo'),
-    testthat = citation('testthat'))
-write.bibtex(bib, file = 'derfinderHelperRef.bib')
+        year = 2017, doi = "10.18129/B9.bioc.S4Vectors"
+    ),
+    sessioninfo = citation("sessioninfo"),
+    testthat = citation("testthat")
+)
+write.bibtex(bib, file = "derfinderHelperRef.bib")
 ```
 
 
@@ -118,25 +123,25 @@ First lets create an example data set where we have information for 1000 feature
 
 ```{r 'createData'}
 ## Create some toy data
-suppressPackageStartupMessages(library('IRanges'))
+suppressPackageStartupMessages(library("IRanges"))
 set.seed(20140923)
 toyData <- DataFrame(
-    'sample1' = Rle(sample(0:10, 1000, TRUE)),
-    'sample2' = Rle(sample(0:10, 1000, TRUE)),
-    'sample3' = Rle(sample(0:10, 1000, TRUE)),
-    'sample4' = Rle(sample(0:10, 1000, TRUE)),
-    'sample5' = Rle(sample(0:15, 1000, TRUE)),
-    'sample6' = Rle(sample(0:15, 1000, TRUE)),
-    'sample7' = Rle(sample(0:15, 1000, TRUE)),
-    'sample8' = Rle(sample(0:15, 1000, TRUE)),
-    'sample9' = Rle(sample(0:20, 1000, TRUE)),
-    'sample10' = Rle(sample(0:20, 1000, TRUE)),
-    'sample11' = Rle(sample(0:20, 1000, TRUE)),
-    'sample12' = Rle(sample(0:20, 1000, TRUE)),
-    'sample13' = Rle(sample(0:100, 1000, TRUE)),
-    'sample14' = Rle(sample(0:100, 1000, TRUE)),
-    'sample15' = Rle(sample(0:100, 1000, TRUE)),
-    'sample16' = Rle(sample(0:100, 1000, TRUE))
+    "sample1" = Rle(sample(0:10, 1000, TRUE)),
+    "sample2" = Rle(sample(0:10, 1000, TRUE)),
+    "sample3" = Rle(sample(0:10, 1000, TRUE)),
+    "sample4" = Rle(sample(0:10, 1000, TRUE)),
+    "sample5" = Rle(sample(0:15, 1000, TRUE)),
+    "sample6" = Rle(sample(0:15, 1000, TRUE)),
+    "sample7" = Rle(sample(0:15, 1000, TRUE)),
+    "sample8" = Rle(sample(0:15, 1000, TRUE)),
+    "sample9" = Rle(sample(0:20, 1000, TRUE)),
+    "sample10" = Rle(sample(0:20, 1000, TRUE)),
+    "sample11" = Rle(sample(0:20, 1000, TRUE)),
+    "sample12" = Rle(sample(0:20, 1000, TRUE)),
+    "sample13" = Rle(sample(0:100, 1000, TRUE)),
+    "sample14" = Rle(sample(0:100, 1000, TRUE)),
+    "sample15" = Rle(sample(0:100, 1000, TRUE)),
+    "sample16" = Rle(sample(0:100, 1000, TRUE))
 )
 
 ## Lets say that we have 4 groups
@@ -156,7 +161,7 @@ To do so, we create the nested models.
 ```{r 'createModels'}
 ## Build the model matrices
 mod <- model.matrix(~ sampleDepth + group)
-mod0 <- model.matrix(~ sampleDepth)
+mod0 <- model.matrix(~sampleDepth)
 
 ## Explore them
 mod
@@ -168,7 +173,7 @@ mod0
 Finally, we can calculate the F-statistics using `fstats.apply()`.
 
 ```{r 'calculateFstats'}
-library('derfinderHelper')
+library("derfinderHelper")
 fstats <- fstats.apply(data = toyData, mod = mod, mod0 = mod0, scalefac = 1)
 fstats
 ```
@@ -201,17 +206,17 @@ Code for creating the vignette
 
 ```{r createVignette, eval=FALSE}
 ## Create the vignette
-library('rmarkdown')
-system.time(render('derfinderHelper.Rmd', 'BiocStyle::html_document'))
+library("rmarkdown")
+system.time(render("derfinderHelper.Rmd", "BiocStyle::html_document"))
 
 ## Extract the R code
-library('knitr')
-knit('derfinderHelper.Rmd', tangle = TRUE)
+library("knitr")
+knit("derfinderHelper.Rmd", tangle = TRUE)
 ```
 
 ```{r createVignette2}
 ## Clean up
-file.remove('derfinderHelperRef.bib')
+file.remove("derfinderHelperRef.bib")
 ```
 
 
@@ -227,14 +232,14 @@ Wallclock time spent generating the vignette.
 ```{r reproducibility2, echo=FALSE}
 ## Processing time in seconds
 totalTime <- diff(c(startTime, Sys.time()))
-round(totalTime, digits=3)
+round(totalTime, digits = 3)
 ```
 
 `R` session information.
 
 ```{r reproducibility3, echo=FALSE}
 ## Session info
-library('sessioninfo')
+library("sessioninfo")
 options(width = 120)
 session_info()
 ```

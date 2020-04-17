@@ -1,38 +1,120 @@
-<a href="http://www.bioconductor.org/packages/release/bioc/html/derfinderHelper.html#since"><img border="0" src="http://www.bioconductor.org/shields/years-in-bioc/derfinderHelper.svg" title="How long since the package was first in a released Bioconductor version (or is it in devel only)."></a> <a href="https://bioconductor.org/packages/stats/bioc/derfinderHelper/"><img border="0" src="http://www.bioconductor.org/shields/downloads/derfinderHelper.svg" title="Percentile (top 5/20/50% or 'available') of downloads over last 6 full months. Comparison is done across all package categories (software, annotation, experiment)."></a> <a href="https://support.bioconductor.org/t/derfinderHelper/"><img border="0" src="http://www.bioconductor.org/shields/posts/derfinderHelper.svg" title="Support site activity, last 6 months: tagged questions/avg. answers per question/avg. comments per question/accepted answers, or 0 if no tagged posts."></a> <a href="http://www.bioconductor.org/packages/release/bioc/html/derfinderHelper.html#svn_source"><img border="0" src="http://www.bioconductor.org/shields/commits/bioc/derfinderHelper.svg" title="average Subversion commits (to the devel branch) per month for the last 6 months"></a>
 
-Status: Travis CI [![Build Status](https://travis-ci.org/leekgroup/derfinderHelper.svg?branch=master)](https://travis-ci.org/leekgroup/derfinderHelper),
-Bioc-release <a href="http://www.bioconductor.org/packages/release/bioc/html/derfinderHelper.html#archives"><img border="0" src="http://www.bioconductor.org/shields/availability/release/derfinderHelper.svg" title="Whether the package is available on all platforms; click for details."></a> <a href="http://bioconductor.org/checkResults/release/bioc-LATEST/derfinderHelper/"><img border="0" src="http://www.bioconductor.org/shields/build/release/bioc/derfinderHelper.svg" title="build results; click for full report"></a>,
-Bioc-devel <a href="http://www.bioconductor.org/packages/devel/bioc/html/derfinderHelper.html#archives"><img border="0" src="http://www.bioconductor.org/shields/availability/devel/derfinderHelper.svg" title="Whether the package is available on all platforms; click for details."></a> <a href="http://bioconductor.org/checkResults/devel/bioc-LATEST/derfinderHelper/"><img border="0" src="http://www.bioconductor.org/shields/build/devel/bioc/derfinderHelper.svg" title="build results; click for full report"></a>.
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 
-Bioc-release <a href="https://bioconductor.org/developers/how-to/unitTesting-guidelines/#coverage"><img border="0" src="http://www.bioconductor.org/shields/coverage/release/derfinderHelper.svg" title="Test coverage percentage, or 'unknown'"></a>, Bioc-devel <a href="https://codecov.io/github/Bioconductor-mirror/derfinderHelper?branch=master"><img border="0" src="http://www.bioconductor.org/shields/coverage/devel/derfinderHelper.svg" title="Test coverage percentage, or 'unknown'"></a>, Codecov [![codecov.io](https://codecov.io/github/leekgroup/derfinderHelper/coverage.svg?branch=master)](https://codecov.io/github/leekgroup/derfinderHelper?branch=master)
+# derfinderHelper
 
-derfinderHelper
-===============
+<!-- badges: start -->
 
-Helper package for [derfinder](http://www.bioconductor.org/packages/derfinder).
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![BioC
+status](http://www.bioconductor.org/shields/build/release/bioc/derfinderHelper.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/derfinderHelper)
+[![Codecov test
+coverage](https://codecov.io/gh/leekgroup/derfinderHelper/branch/master/graph/badge.svg)](https://codecov.io/gh/leekgroup/derfinderHelper?branch=master)
+[![R build
+status](https://github.com/leekgroup/derfinderHelper/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/leekgroup/derfinderHelper/actions)
+<!-- badges: end -->
 
-# Installation instructions
+Helper package for
+[derfinder](http://www.bioconductor.org/packages/derfinder).
 
-Get R 3.5.x from [CRAN](http://cran.r-project.org/).
+## Documentation
 
-```R
-## From Bioconductor
+For more information about `derfinderHelper` check the vignettes
+[through Bioconductor](http://bioconductor.org/packages/derfinderHelper)
+or at the [documentation
+website](http://leekgroup.github.io/derfinderHelper).
+
+## Installation instructions
+
+Get the latest stable `R` release from
+[CRAN](http://cran.r-project.org/). Then install `derfinderHelper` using
+from [Bioconductor](http://bioconductor.org/) the following code:
+
+``` r
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
 BiocManager::install("derfinderHelper")
 ```
 
-# Vignette
+## Citation
 
-The vignette for this package can be viewed [here](http://leekgroup.github.io/derfinderHelper/) or via [Bioconductor's website](http://www.bioconductor.org/packages/derfinderHelper).
+Below is the citation output from using `citation('derfinderHelper')` in
+R. Please run this yourself to check for any updates on how to cite
+**derfinderHelper**.
 
+``` r
+print(citation('derfinderHelper'), bibtex = TRUE)
+#> 
+#> Collado-Torres L, Jaffe AE, Leek JT (2017). _derfinderHelper: derfinder
+#> helper package_. doi: 10.18129/B9.bioc.derfinderHelper (URL:
+#> https://doi.org/10.18129/B9.bioc.derfinderHelper),
+#> https://github.com/leekgroup/derfinderHelper - R package version
+#> 1.21.1, <URL: http://www.bioconductor.org/packages/derfinderHelper>.
+#> 
+#> A BibTeX entry for LaTeX users is
+#> 
+#>   @Manual{,
+#>     title = {derfinderHelper: derfinder helper package},
+#>     author = {Leonardo Collado-Torres and Andrew E. Jaffe and Jeffrey T. Leek},
+#>     year = {2017},
+#>     url = {http://www.bioconductor.org/packages/derfinderHelper},
+#>     note = {https://github.com/leekgroup/derfinderHelper - R package version 1.21.1},
+#>     doi = {10.18129/B9.bioc.derfinderHelper},
+#>   }
+#> 
+#> Collado-Torres L, Nellore A, Frazee AC, Wilks C, Love MI, Langmead B,
+#> Irizarry RA, Leek JT, Jaffe AE (2017). "Flexible expressed region
+#> analysis for RNA-seq with derfinder." _Nucl. Acids Res._. doi:
+#> 10.1093/nar/gkw852 (URL: https://doi.org/10.1093/nar/gkw852), <URL:
+#> http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852>.
+#> 
+#> A BibTeX entry for LaTeX users is
+#> 
+#>   @Article{,
+#>     title = {Flexible expressed region analysis for RNA-seq with derfinder},
+#>     author = {Leonardo Collado-Torres and Abhinav Nellore and Alyssa C. Frazee and Christopher Wilks and Michael I. Love and Ben Langmead and Rafael A. Irizarry and Jeffrey T. Leek and Andrew E. Jaffe},
+#>     year = {2017},
+#>     journal = {Nucl. Acids Res.},
+#>     doi = {10.1093/nar/gkw852},
+#>     url = {http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852},
+#>   }
+```
 
-# Citation
+Please note that the `derfinderHelper` was only made possible thanks to
+many other R and bioinformatics software authors, which are cited either
+in the vignettes and/or the paper(s) describing this package.
 
-Use [derfinder's citation](https://github.com/lcolladotor/derfinder#citation) information.
+## Code of Conduct
 
+Please note that the derfinderHelper project is released with a
+[Contributor Code of
+Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.
 
-# Testing
+## Development tools
 
-Testing on Bioc-devel is feasible thanks to [R Travis](http://docs.travis-ci.com/user/languages/r/) as well as Bioconductor's nightly build.
+  - Continuous code testing is possible thanks to [GitHub
+    actions](https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/)
+    through *[usethis](https://CRAN.R-project.org/package=usethis)*,
+    *[remotes](https://CRAN.R-project.org/package=remotes)*,
+    *[sysreqs](https://github.com/r-hub/sysreqs)* and
+    *[rcmdcheck](https://CRAN.R-project.org/package=rcmdcheck)*
+    customized to use [Bioconductor’s docker
+    containers](https://www.bioconductor.org/help/docker/) and
+    *[BiocCheck](https://bioconductor.org/packages/3.11/BiocCheck)*.
+  - Code coverage assessment is possible thanks to
+    [codecov](https://codecov.io/gh) and
+    *[covr](https://CRAN.R-project.org/package=covr)*.
+  - The [documentation
+    website](http://leekgroup.github.io/derfinderHelper) is
+    automatically updated thanks to
+    *[pkgdown](https://CRAN.R-project.org/package=pkgdown)*.
+  - The code is styled automatically thanks to
+    *[styler](https://CRAN.R-project.org/package=styler)*.
+  - The documentation is formatted thanks to
+    *[devtools](https://CRAN.R-project.org/package=devtools)* and
+    *[roxygen2](https://CRAN.R-project.org/package=roxygen2)*.
+
+For more details, check the `dev` directory.

@@ -1,3 +1,11 @@
+# derfinderHelper 1.21.1
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+* Documentation website is now available at
+http://leekgroup.github.io/derfinderHelper/. It gets updated with every commit on
+the master branch (bioc-devel) using GitHub Actions and pkgdown.
+
 # derfinderHelper 1.19.3
 
 * Added a `NEWS.md` file to track changes to the package.

@@ -1,36 +1,47 @@
 ## Setup1
-suppressPackageStartupMessages(library('IRanges'))
+suppressPackageStartupMessages(library("IRanges"))
 suppressWarnings(RNGversion("3.5.0"))
 set.seed(20140916)
 toyData <- DataFrame(
-    'sample1' = Rle(sample(0:10, 1000, TRUE)),
-    'sample2' = Rle(sample(0:10, 1000, TRUE)),
-    'sample3' = Rle(sample(0:10, 1000, TRUE)),
-    'sample4' = Rle(sample(0:10, 1000, TRUE)))
+    "sample1" = Rle(sample(0:10, 1000, TRUE)),
+    "sample2" = Rle(sample(0:10, 1000, TRUE)),
+    "sample3" = Rle(sample(0:10, 1000, TRUE)),
+    "sample4" = Rle(sample(0:10, 1000, TRUE))
+)
 
 ## Create the model matrices
-group <- c('A', 'A', 'B', 'B')
-mod.toy <- model.matrix(~ group)
+group <- c("A", "A", "B", "B")
+mod.toy <- model.matrix(~group)
 mod0.toy <- model.matrix(~ 0 + rep(1, 4))
 
 
 ## Input
-test_that('input checks', {
-    expect_that(fstats.apply(data = toyData, mod = mod.toy, mod0 = mod0.toy, 
-        scalefac = -1), throws_error())
-    expect_that(fstats.apply(data = toyData, mod = mod.toy, mod0 = mod0.toy, 
-        scalefac = 1, method = 'mine'), throws_error())
+test_that("input checks", {
+    expect_that(fstats.apply(
+        data = toyData, mod = mod.toy, mod0 = mod0.toy,
+        scalefac = -1
+    ), throws_error())
+    expect_that(fstats.apply(
+        data = toyData, mod = mod.toy, mod0 = mod0.toy,
+        scalefac = 1, method = "mine"
+    ), throws_error())
 })
 
 ## Methods
-fstats.Matrix <- fstats.apply(data = toyData, mod = mod.toy, mod0 = mod0.toy, 
-    scalefac = 1, method = 'Matrix', adjustF = 0.01)
-fstats.Rle <- fstats.apply(data = toyData, mod = mod.toy, mod0 = mod0.toy, 
-    scalefac = 1, method = 'Rle', adjustF = 0.01)
-fstats.regular <- fstats.apply(data = toyData, mod = mod.toy, mod0 = mod0.toy, 
-    scalefac = 1, method = 'regular', adjustF = 0.01)
+fstats.Matrix <- fstats.apply(
+    data = toyData, mod = mod.toy, mod0 = mod0.toy,
+    scalefac = 1, method = "Matrix", adjustF = 0.01
+)
+fstats.Rle <- fstats.apply(
+    data = toyData, mod = mod.toy, mod0 = mod0.toy,
+    scalefac = 1, method = "Rle", adjustF = 0.01
+)
+fstats.regular <- fstats.apply(
+    data = toyData, mod = mod.toy, mod0 = mod0.toy,
+    scalefac = 1, method = "regular", adjustF = 0.01
+)
 
-test_that('methods are equivalent', {
+test_that("methods are equivalent", {
     expect_that(fstats.Matrix, is_identical_to(fstats.Rle))
     expect_that(fstats.regular, is_identical_to(fstats.Rle))
     expect_that(fstats.Matrix, is_identical_to(fstats.regular))
@@ -42,7 +53,7 @@ vals <- c(0, 0, 2, 0, 3, 1, 1, 0, 1, 3, 4900, 2, 0, 1, 25, 0, 4, 0, 2, 2, 0, 34,
 lens <- c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 lens <- as.integer(lens)
 
-test_that('Correct output', {
+test_that("Correct output", {
     expect_that(round(runValue(fstats.Matrix)), is_identical_to(vals))
     expect_that(runLength(fstats.Matrix), is_identical_to(lens))
 })
