@@ -79,7 +79,6 @@ bib <- c(
     BiocStyle = citation("BiocStyle"),
     knitr = citation("knitr")[3],
     rmarkdown = citation("rmarkdown"),
-    BiocParallel = citation("BiocParallel"),
     R = citation(),
     IRanges = citation("IRanges"),
     Matrix = citation("Matrix"),
@@ -182,7 +181,7 @@ We can then proceed to use this information in `r Biocpkg('derfinder')` or in an
 
 # Details
 
-We created `r Biocpkg('derfinderHelper')` for calculating F-statistics using `SnowParam()` from `r Biocpkg('BiocParallel')` `r citep(bib[['BiocParallel']])`. Using this form of parallelization requires loading the necessary packages in the child processes. Because `r Biocpkg('derfinder')` takes a long time to load, we shipped off `fstats.apply()` to its own package to improve the speed of the calculations while retaining the memory advantages of `SnowParam()` over `MulticoreParam()`.
+We created `r Biocpkg('derfinderHelper')` for calculating F-statistics using `SnowParam()` from `r Biocpkg('BiocParallel')`. Using this form of parallelization requires loading the necessary packages in the child processes. Because `r Biocpkg('derfinder')` takes a long time to load, we shipped off `fstats.apply()` to its own package to improve the speed of the calculations while retaining the memory advantages of `SnowParam()` over `MulticoreParam()`.
 
 Note that transforming the data from a `DataFrame` to a `dgCMatrix` takes some time, so the most efficient performance is achieved when the data is converted at the beginning instead of at every permutation calculation. This is done in `derfinder::preprocessCoverage()` when `lowMemDir` is specified.
 
