@@ -18,8 +18,11 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![BioC status](http://www.bioconductor.org/shields/build/release/bioc/derfinderHelper.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/derfinderHelper)
+[![BioC dev status](http://www.bioconductor.org/shields/build/devel/bioc/derfinderHelper.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/derfinderHelper)
 [![Codecov test coverage](https://codecov.io/gh/leekgroup/derfinderHelper/branch/master/graph/badge.svg)](https://codecov.io/gh/leekgroup/derfinderHelper?branch=master)
 [![R build status](https://github.com/leekgroup/derfinderHelper/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/leekgroup/derfinderHelper/actions)
+[![Support site activity, last 6 months: tagged questions/avg. answers per question/avg. comments per question/accepted answers, or 0 if no tagged posts.](http://www.bioconductor.org/shields/posts/derfinderHelper.svg)](https://support.bioconductor.org/t/derfinderHelper/)
+[![GitHub issues](https://img.shields.io/github/issues/leekgroup/derfinderHelper)](https://github.com/leekgroup/derfinderHelper/issues)
 <!-- badges: end -->
 
 Helper package for [derfinder](http://www.bioconductor.org/packages/derfinder).
