@@ -88,7 +88,7 @@ bib <- c(
 ```
 
 
-`r Biocpkg('derfinderHelper')` `r citep(bib[['derfinderHelper']])` is a small package that was created to speed up the F-statistics approach implemented in the parent package `r Biocpkg('derfinder')`. It contains a single function, `fstats.apply()`, which is used to calculate the F-statistics for a given data matrix, null and an alternative models.
+`r Biocpkg('derfinderHelper')` `r Citep(bib[['derfinderHelper']])` is a small package that was created to speed up the F-statistics approach implemented in the parent package `r Biocpkg('derfinder')`. It contains a single function, `fstats.apply()`, which is used to calculate the F-statistics for a given data matrix, null and an alternative models.
 
 The data is generally arranged in an matrix where the rows ($n$) are the genomic features of interest (gene-level summaries, exon-level summaries, or base-level data) and the columns ($m$) represent the samples. The other two main arguments for `fstats.apply()` are the null and alternative model matrices which are $m \times p_0$ and $m \times p$  where $p_0$ is the number of covariates in the null model and $p$ is the number of covariates in the alternative model. The models have to be nested and thus by definition $p > p_0$. The end result is a vector of F-statistics with length $n$, which is run length encoded for memory saving purposes.
 
@@ -183,16 +183,16 @@ Note that transforming the data from a `DataFrame` to a `dgCMatrix` takes some t
 
 This package was made possible thanks to:
 
-* R `r citep(bib[['R']])`
-* `r Biocpkg('IRanges')` `r citep(bib[['IRanges']])`
-* `r CRANpkg('Matrix')` `r citep(bib[['Matrix']])`
-* `r Biocpkg('S4Vectors')` `r citep(bib[['S4Vectors']])`
-* `r CRANpkg('sessioninfo')` `r citep(bib[['sessioninfo']])`
-* `r CRANpkg('knitr')` `r citep(bib[['knitr']])`
-* `r Biocpkg('BiocStyle')` `r citep(bib[['BiocStyle']])`
+* R `r Citep(bib[['R']])`
+* `r Biocpkg('IRanges')` `r Citep(bib[['IRanges']])`
+* `r CRANpkg('Matrix')` `r Citep(bib[['Matrix']])`
+* `r Biocpkg('S4Vectors')` `r Citep(bib[['S4Vectors']])`
+* `r CRANpkg('sessioninfo')` `r Citep(bib[['sessioninfo']])`
+* `r CRANpkg('knitr')` `r Citep(bib[['knitr']])`
+* `r Biocpkg('BiocStyle')` `r Citep(bib[['BiocStyle']])`
 * `r CRANpkg("RefManageR")` `r Citep(bib[["RefManageR"]])`
-* `r CRANpkg('rmarkdown')` `r citep(bib[['rmarkdown']])`
-* `r CRANpkg('testthat')` `r citep(bib[['testthat']])`
+* `r CRANpkg('rmarkdown')` `r Citep(bib[['rmarkdown']])`
+* `r CRANpkg('testthat')` `r Citep(bib[['testthat']])`
 
 Code for creating the vignette
 
@@ -232,12 +232,12 @@ session_info()
 
 # Bibliography
 
-This vignette was generated using `r Biocpkg('BiocStyle')` `r citep(bib[['BiocStyle']])`
-with `r CRANpkg('knitr')` `r citep(bib[['knitr']])` and `r CRANpkg('rmarkdown')` `r citep(bib[['rmarkdown']])` running behind the scenes.
+This vignette was generated using `r Biocpkg('BiocStyle')` `r Citep(bib[['BiocStyle']])`
+with `r CRANpkg('knitr')` `r Citep(bib[['knitr']])` and `r CRANpkg('rmarkdown')` `r Citep(bib[['rmarkdown']])` running behind the scenes.
 
-Citations made with `r CRANpkg('RefManageR')` `r citep(bib[['RefManageR']])`.
+Citations made with `r CRANpkg('RefManageR')` `r Citep(bib[['RefManageR']])`.
 
 ```{r vignetteBiblio, results = 'asis', echo = FALSE, warning = FALSE, message = FALSE}
 ## Print bibliography
-bibliography()
+PrintBibliography(bib, .opts = list(hyperlink = "to.doc", style = "html"))
 ```
