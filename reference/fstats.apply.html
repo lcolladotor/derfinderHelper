@@ -47,6 +47,8 @@ data, comparing the models mod (alternative) and mod0
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -58,9 +60,15 @@ data, comparing the models mod (alternative) and mod0
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -74,19 +82,13 @@ data, comparing the models mod (alternative) and mod0
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">derfinderHelper</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.27.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.27.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../articles/derfinderHelper.html">Get started</a>
 </li>
 <li>
@@ -127,7 +129,7 @@ data, comparing the models mod (alternative) and mod0
 (null).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>fstats.apply</span><span class='op'>(</span>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>fstats.apply</span><span class='op'>(</span>
   index <span class='op'>=</span> <span class='fu'>Rle</span><span class='op'>(</span><span class='cn'>TRUE</span>, <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span><span class='op'>)</span>,
   <span class='va'>data</span>,
   <span class='va'>mod</span>,
@@ -136,7 +138,7 @@ data, comparing the models mod (alternative) and mod0
   lowMemDir <span class='op'>=</span> <span class='cn'>NULL</span>,
   method <span class='op'>=</span> <span class='st'>"Matrix"</span>,
   scalefac <span class='op'>=</span> <span class='fl'>32</span>
-<span class='op'>)</span></pre>
+<span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -219,83 +221,87 @@ available.</p>
     <p>Leonardo Collado-Torres, Jeff Leek</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>## Create some toy data</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://bioconductor.org/packages/IRanges'>"IRanges"</a></span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Loading required package: BiocGenerics</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: parallel</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: ‘BiocGenerics’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:parallel’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,</span>
-#&gt; <span class='message'>    clusterExport, clusterMap, parApply, parCapply, parLapply,</span>
-#&gt; <span class='message'>    parLapplyLB, parRapply, parSapply, parSapplyLB</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:stats’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    IQR, mad, sd, var, xtabs</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    anyDuplicated, append, as.data.frame, basename, cbind, colnames,</span>
-#&gt; <span class='message'>    dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,</span>
-#&gt; <span class='message'>    grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,</span>
-#&gt; <span class='message'>    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,</span>
-#&gt; <span class='message'>    rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,</span>
-#&gt; <span class='message'>    union, unique, unsplit, which.max, which.min</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: S4Vectors</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: stats4</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: ‘S4Vectors’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:base’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    expand.grid</span></div><div class='input'><span class='va'>toyData</span> <span class='op'>&lt;-</span> <span class='fu'>DataFrame</span><span class='op'>(</span>
-    <span class='st'>"sample1"</span> <span class='op'>=</span> <span class='fu'>Rle</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>:</span><span class='fl'>10</span>, <span class='fl'>1000</span>, <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>,
-    <span class='st'>"sample2"</span> <span class='op'>=</span> <span class='fu'>Rle</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>:</span><span class='fl'>10</span>, <span class='fl'>1000</span>, <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>,
-    <span class='st'>"sample3"</span> <span class='op'>=</span> <span class='fu'>Rle</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>:</span><span class='fl'>10</span>, <span class='fl'>1000</span>, <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>,
-    <span class='st'>"sample4"</span> <span class='op'>=</span> <span class='fu'>Rle</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>:</span><span class='fl'>10</span>, <span class='fl'>1000</span>, <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
-<span class='op'>)</span>
-
-<span class='co'>## Create the model matrices</span>
-<span class='va'>group</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"A"</span>, <span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"B"</span><span class='op'>)</span>
-<span class='va'>mod.toy</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/model.matrix.html'>model.matrix</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>group</span><span class='op'>)</span>
-<span class='va'>mod0.toy</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/model.matrix.html'>model.matrix</a></span><span class='op'>(</span><span class='op'>~</span> <span class='fl'>0</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='co'>## Get the F-statistics</span>
-<span class='va'>fstats</span> <span class='op'>&lt;-</span> <span class='fu'>fstats.apply</span><span class='op'>(</span>
-    data <span class='op'>=</span> <span class='va'>toyData</span>, mod <span class='op'>=</span> <span class='va'>mod.toy</span>, mod0 <span class='op'>=</span> <span class='va'>mod0.toy</span>,
-    scalefac <span class='op'>=</span> <span class='fl'>1</span>
-<span class='op'>)</span>
-
-
-<span class='co'>## Example with data from derfinder package</span>
-<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='co'>## Load the data</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'>"derfinder"</span><span class='op'>)</span>
-
-<span class='co'>## Create the model matrices</span>
-<span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/model.matrix.html'>model.matrix</a></span><span class='op'>(</span><span class='op'>~</span> <span class='va'>genomeInfo</span><span class='op'>$</span><span class='va'>pop</span><span class='op'>)</span>
-<span class='va'>mod0</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/model.matrix.html'>model.matrix</a></span><span class='op'>(</span><span class='op'>~</span> <span class='fl'>0</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>genomeInfo</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='co'>## Run the function</span>
-<span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='va'>fstats.Matrix</span> <span class='op'>&lt;-</span> <span class='fu'>fstats.apply</span><span class='op'>(</span>
-    data <span class='op'>=</span> <span class='va'>genomeData</span><span class='op'>$</span><span class='va'>coverage</span>, mod <span class='op'>=</span> <span class='va'>mod</span>,
-    mod0 <span class='op'>=</span> <span class='va'>mod0</span>, method <span class='op'>=</span> <span class='st'>"Matrix"</span>, scalefac <span class='op'>=</span> <span class='fl'>1</span>
-<span class='op'>)</span><span class='op'>)</span>
-<span class='va'>fstats.Matrix</span>
-
-<span class='co'>## Compare methods</span>
-<span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='va'>fstats.regular</span> <span class='op'>&lt;-</span> <span class='fu'>fstats.apply</span><span class='op'>(</span>
-    data <span class='op'>=</span> <span class='va'>genomeData</span><span class='op'>$</span><span class='va'>coverage</span>,
-    mod <span class='op'>=</span> <span class='va'>mod</span>, mod0 <span class='op'>=</span> <span class='va'>mod0</span>, method <span class='op'>=</span> <span class='st'>"regular"</span>
-<span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='va'>fstats.Rle</span> <span class='op'>&lt;-</span> <span class='fu'>fstats.apply</span><span class='op'>(</span>
-    data <span class='op'>=</span> <span class='va'>genomeData</span><span class='op'>$</span><span class='va'>coverage</span>, mod <span class='op'>=</span> <span class='va'>mod</span>,
-    mod0 <span class='op'>=</span> <span class='va'>mod0</span>, method <span class='op'>=</span> <span class='st'>"Rle"</span>
-<span class='op'>)</span><span class='op'>)</span>
-
-<span class='co'>## Small numerical differences can occur</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>fstats.regular</span> <span class='op'>-</span> <span class='va'>fstats.Matrix</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>fstats.regular</span> <span class='op'>-</span> <span class='va'>fstats.Rle</span><span class='op'>)</span>
-
-<span class='co'>## You can make the effect negligible by appropriately rounding</span>
-<span class='co'>## findRegions(cutoff) so the DERs will be the same regardless of the method</span>
-<span class='co'>## used.</span>
-
-<span class='co'>## Extra comparison, although the method to compare against is 'regular'</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>fstats.Rle</span> <span class='op'>-</span> <span class='va'>fstats.Matrix</span><span class='op'>)</span>
-<span class='op'>}</span>
-
-</div></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='co'>## Create some toy data</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://bioconductor.org/packages/IRanges'>"IRanges"</a></span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Loading required package: BiocGenerics</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Attaching package: ‘BiocGenerics’</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> The following objects are masked from ‘package:stats’:</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     IQR, mad, sd, var, xtabs</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> The following objects are masked from ‘package:base’:</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Filter, Find, Map, Position, Reduce, anyDuplicated, append,</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     as.data.frame, basename, cbind, colnames, dirname, do.call,</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     tapply, union, unique, unsplit, which.max, which.min</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Loading required package: S4Vectors</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Loading required package: stats4</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Attaching package: ‘S4Vectors’</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> The following objects are masked from ‘package:base’:</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     I, expand.grid, unname</span>
+<span class='r-in'><span class='va'>toyData</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/S4Vectors/man/DataFrame-class.html'>DataFrame</a></span><span class='op'>(</span></span>
+<span class='r-in'>    <span class='st'>"sample1"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/S4Vectors/man/Rle-class.html'>Rle</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>:</span><span class='fl'>10</span>, <span class='fl'>1000</span>, <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>,</span>
+<span class='r-in'>    <span class='st'>"sample2"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/S4Vectors/man/Rle-class.html'>Rle</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>:</span><span class='fl'>10</span>, <span class='fl'>1000</span>, <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>,</span>
+<span class='r-in'>    <span class='st'>"sample3"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/S4Vectors/man/Rle-class.html'>Rle</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>:</span><span class='fl'>10</span>, <span class='fl'>1000</span>, <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>,</span>
+<span class='r-in'>    <span class='st'>"sample4"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/S4Vectors/man/Rle-class.html'>Rle</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>:</span><span class='fl'>10</span>, <span class='fl'>1000</span>, <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Create the model matrices</span></span>
+<span class='r-in'><span class='va'>group</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/S4Vectors/man/Vector-class.html'>c</a></span><span class='op'>(</span><span class='st'>"A"</span>, <span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"B"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>mod.toy</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/model.matrix.html'>model.matrix</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>group</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>mod0.toy</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/model.matrix.html'>model.matrix</a></span><span class='op'>(</span><span class='op'>~</span> <span class='fl'>0</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/pkg/S4Vectors/man/Vector-class.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Get the F-statistics</span></span>
+<span class='r-in'><span class='va'>fstats</span> <span class='op'>&lt;-</span> <span class='fu'>fstats.apply</span><span class='op'>(</span></span>
+<span class='r-in'>    data <span class='op'>=</span> <span class='va'>toyData</span>, mod <span class='op'>=</span> <span class='va'>mod.toy</span>, mod0 <span class='op'>=</span> <span class='va'>mod0.toy</span>,</span>
+<span class='r-in'>    scalefac <span class='op'>=</span> <span class='fl'>1</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Example with data from derfinder package</span></span>
+<span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'><span class='co'>## Load the data</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'>"derfinder"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Create the model matrices</span></span>
+<span class='r-in'><span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/model.matrix.html'>model.matrix</a></span><span class='op'>(</span><span class='op'>~</span> <span class='va'>genomeInfo</span><span class='op'>$</span><span class='va'>pop</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>mod0</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/model.matrix.html'>model.matrix</a></span><span class='op'>(</span><span class='op'>~</span> <span class='fl'>0</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/pkg/S4Vectors/man/Vector-class.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/pkg/BiocGenerics/man/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>genomeInfo</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Run the function</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='va'>fstats.Matrix</span> <span class='op'>&lt;-</span> <span class='fu'>fstats.apply</span><span class='op'>(</span></span>
+<span class='r-in'>    data <span class='op'>=</span> <span class='va'>genomeData</span><span class='op'>$</span><span class='va'>coverage</span>, mod <span class='op'>=</span> <span class='va'>mod</span>,</span>
+<span class='r-in'>    mod0 <span class='op'>=</span> <span class='va'>mod0</span>, method <span class='op'>=</span> <span class='st'>"Matrix"</span>, scalefac <span class='op'>=</span> <span class='fl'>1</span></span>
+<span class='r-in'><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>fstats.Matrix</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Compare methods</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='va'>fstats.regular</span> <span class='op'>&lt;-</span> <span class='fu'>fstats.apply</span><span class='op'>(</span></span>
+<span class='r-in'>    data <span class='op'>=</span> <span class='va'>genomeData</span><span class='op'>$</span><span class='va'>coverage</span>,</span>
+<span class='r-in'>    mod <span class='op'>=</span> <span class='va'>mod</span>, mod0 <span class='op'>=</span> <span class='va'>mod0</span>, method <span class='op'>=</span> <span class='st'>"regular"</span></span>
+<span class='r-in'><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='va'>fstats.Rle</span> <span class='op'>&lt;-</span> <span class='fu'>fstats.apply</span><span class='op'>(</span></span>
+<span class='r-in'>    data <span class='op'>=</span> <span class='va'>genomeData</span><span class='op'>$</span><span class='va'>coverage</span>, mod <span class='op'>=</span> <span class='va'>mod</span>,</span>
+<span class='r-in'>    mod0 <span class='op'>=</span> <span class='va'>mod0</span>, method <span class='op'>=</span> <span class='st'>"Rle"</span></span>
+<span class='r-in'><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Small numerical differences can occur</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>fstats.regular</span> <span class='op'>-</span> <span class='va'>fstats.Matrix</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>fstats.regular</span> <span class='op'>-</span> <span class='va'>fstats.Rle</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## You can make the effect negligible by appropriately rounding</span></span>
+<span class='r-in'><span class='co'>## findRegions(cutoff) so the DERs will be the same regardless of the method</span></span>
+<span class='r-in'><span class='co'>## used.</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Extra comparison, although the method to compare against is 'regular'</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>fstats.Rle</span> <span class='op'>-</span> <span class='va'>fstats.Matrix</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>}</span></span>
+<span class='r-in'></span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -307,11 +313,11 @@ available.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Leonardo Collado-Torres, Andrew E. Jaffe, Jeffrey T. Leek.</p>
+  <p><p>Developed by Leonardo Collado-Torres, Andrew E. Jaffe, Jeffrey T. Leek.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -319,6 +325,8 @@ available.</p>
 
   
 
+
+  
 
   </body>
 </html>
