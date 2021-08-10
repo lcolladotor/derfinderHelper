@@ -26,7 +26,9 @@ Suggests:
     covr
 VignetteBuilder: knitr
 Description: Helper package for speeding up the derfinder package when using
-    multiple cores.
+    multiple cores. This package is particularly useful when using 
+    BiocParallel and it helps reduce the time spent loading the full
+    derfinder package when running the F-statistics calculation in parallel.
 License: Artistic-2.0
 LazyData: false
 URL: https://github.com/leekgroup/derfinderHelper
