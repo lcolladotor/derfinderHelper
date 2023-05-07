@@ -124,9 +124,9 @@
 #' summary(fstats.Rle - fstats.Matrix)
 #' }
 #'
-fstats.apply <- function(index = Rle(TRUE, nrow(data)), data, mod, mod0,
-    adjustF = 0, lowMemDir = NULL, method = "Matrix", scalefac = 32) {
-
+fstats.apply <- function(
+        index = Rle(TRUE, nrow(data)), data, mod, mod0,
+        adjustF = 0, lowMemDir = NULL, method = "Matrix", scalefac = 32) {
     ## Check for valid method
     stopifnot(method %in% c("Matrix", "Rle", "regular"))
     stopifnot(scalefac >= 0)
@@ -163,12 +163,12 @@ fstats.apply <- function(index = Rle(TRUE, nrow(data)), data, mod, mod0,
             round(max(rowSums(x)), 4) == 0
         })), "Matrix", "regular")
         if (useMethod == "regular") {
-              warning("Switching to method 'regular' because the row sums of the projection matrices are not 0. This can happen when a model matrix does not have an intercept term.")
-          }
+            warning("Switching to method 'regular' because the row sums of the projection matrices are not 0. This can happen when a model matrix does not have an intercept term.")
+        }
     } else if (useMethod == "Rle") {
         if (n > 40) {
-              warning("Let n be the number of samples in the data. The implementation of method='Rle' requires n(n + 1) operations and thus gets considerably slower as n increases. Consider using chunks and method='Matrix'")
-          }
+            warning("Let n be the number of samples in the data. The implementation of method='Rle' requires n(n + 1) operations and thus gets considerably slower as n increases. Consider using chunks and method='Matrix'")
+        }
     }
 
     ## Transform data

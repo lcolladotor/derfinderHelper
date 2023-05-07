@@ -6,21 +6,29 @@
 <!-- badges: start -->
 
 [![Lifecycle:
-stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
-[![BioC
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![Bioc release
 status](http://www.bioconductor.org/shields/build/release/bioc/derfinderHelper.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/derfinderHelper)
-[![BioC dev
+[![Bioc devel
 status](http://www.bioconductor.org/shields/build/devel/bioc/derfinderHelper.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/derfinderHelper)
+[![Bioc downloads
+rank](https://bioconductor.org/shields/downloads/release/derfinderHelper.svg)](http://bioconductor.org/packages/stats/bioc/derfinderHelper/)
+[![Bioc
+support](https://bioconductor.org/shields/posts/derfinderHelper.svg)](https://support.bioconductor.org/tag/derfinderHelper)
+[![Bioc
+history](https://bioconductor.org/shields/years-in-bioc/derfinderHelper.svg)](https://bioconductor.org/packages/release/bioc/html/derfinderHelper.html#since)
+[![Bioc last
+commit](https://bioconductor.org/shields/lastcommit/devel/bioc/derfinderHelper.svg)](http://bioconductor.org/checkResults/devel/bioc-LATEST/derfinderHelper/)
+[![Bioc
+dependencies](https://bioconductor.org/shields/dependencies/release/derfinderHelper.svg)](https://bioconductor.org/packages/release/bioc/html/derfinderHelper.html#since)
 [![Codecov test
-coverage](https://codecov.io/gh/leekgroup/derfinderHelper/branch/master/graph/badge.svg)](https://codecov.io/gh/leekgroup/derfinderHelper?branch=master)
+coverage](https://codecov.io/gh/leekgroup/derfinderHelper/branch/devel/graph/badge.svg)](https://codecov.io/gh/leekgroup/derfinderHelper?branch=devel)
 [![R build
 status](https://github.com/leekgroup/derfinderHelper/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/leekgroup/derfinderHelper/actions)
-[![Support site activity, last 6 months: tagged questions/avg. answers
-per question/avg. comments per question/accepted answers, or 0 if no
-tagged
-posts.](http://www.bioconductor.org/shields/posts/derfinderHelper.svg)](https://support.bioconductor.org/t/derfinderHelper/)
 [![GitHub
 issues](https://img.shields.io/github/issues/leekgroup/derfinderHelper)](https://github.com/leekgroup/derfinderHelper/issues)
+[![GitHub
+pulls](https://img.shields.io/github/issues-pr/leekgroup/derfinderHelper)](https://github.com/leekgroup/derfinderHelper/pulls)
 <!-- badges: end -->
 
 Helper package for
@@ -41,8 +49,8 @@ Get the latest stable `R` release from
 
 ``` r
 if (!requireNamespace("BiocManager", quietly = TRUE)) {
-      install.packages("BiocManager")
-  }
+    install.packages("BiocManager")
+}
 
 BiocManager::install("derfinderHelper")
 ```
@@ -55,12 +63,13 @@ R. Please run this yourself to check for any updates on how to cite
 
 ``` r
 print(citation("derfinderHelper"), bibtex = TRUE)
+#> To cite package 'derfinderHelper' in publications use:
 #> 
-#> Collado-Torres L, Jaffe AE, Leek JT (2017). _derfinderHelper: derfinder
-#> helper package_. doi: 10.18129/B9.bioc.derfinderHelper (URL:
-#> https://doi.org/10.18129/B9.bioc.derfinderHelper),
-#> https://github.com/leekgroup/derfinderHelper - R package version
-#> 1.25.1, <URL: http://www.bioconductor.org/packages/derfinderHelper>.
+#>   Collado-Torres L, Jaffe AE, Leek JT (2017). _derfinderHelper:
+#>   derfinder helper package_. doi:10.18129/B9.bioc.derfinderHelper
+#>   <https://doi.org/10.18129/B9.bioc.derfinderHelper>,
+#>   https://github.com/leekgroup/derfinderHelper - R package version
+#>   1.35.0, <http://www.bioconductor.org/packages/derfinderHelper>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
@@ -69,15 +78,15 @@ print(citation("derfinderHelper"), bibtex = TRUE)
 #>     author = {Leonardo Collado-Torres and Andrew E. Jaffe and Jeffrey T. Leek},
 #>     year = {2017},
 #>     url = {http://www.bioconductor.org/packages/derfinderHelper},
-#>     note = {https://github.com/leekgroup/derfinderHelper - R package version 1.25.1},
+#>     note = {https://github.com/leekgroup/derfinderHelper - R package version 1.35.0},
 #>     doi = {10.18129/B9.bioc.derfinderHelper},
 #>   }
 #> 
-#> Collado-Torres L, Nellore A, Frazee AC, Wilks C, Love MI, Langmead B,
-#> Irizarry RA, Leek JT, Jaffe AE (2017). "Flexible expressed region
-#> analysis for RNA-seq with derfinder." _Nucl. Acids Res._. doi:
-#> 10.1093/nar/gkw852 (URL: https://doi.org/10.1093/nar/gkw852), <URL:
-#> http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852>.
+#>   Collado-Torres L, Nellore A, Frazee AC, Wilks C, Love MI, Langmead B,
+#>   Irizarry RA, Leek JT, Jaffe AE (2017). "Flexible expressed region
+#>   analysis for RNA-seq with derfinder." _Nucl. Acids Res._.
+#>   doi:10.1093/nar/gkw852 <https://doi.org/10.1093/nar/gkw852>,
+#>   <http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
@@ -104,26 +113,26 @@ By contributing to this project, you agree to abide by its terms.
 
 ## Development tools
 
--   Continuous code testing is possible thanks to [GitHub
-    actions](https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/)
-    through *[usethis](https://CRAN.R-project.org/package=usethis)*,
-    *[remotes](https://CRAN.R-project.org/package=remotes)*,
-    *[sysreqs](https://github.com/r-hub/sysreqs)* and
-    *[rcmdcheck](https://CRAN.R-project.org/package=rcmdcheck)*
-    customized to use [Bioconductor’s docker
-    containers](https://www.bioconductor.org/help/docker/) and
-    *[BiocCheck](https://bioconductor.org/packages/3.12/BiocCheck)*.
--   Code coverage assessment is possible thanks to
-    [codecov](https://codecov.io/gh) and
-    *[covr](https://CRAN.R-project.org/package=covr)*.
--   The [documentation
-    website](http://leekgroup.github.io/derfinderHelper) is
-    automatically updated thanks to
-    *[pkgdown](https://CRAN.R-project.org/package=pkgdown)*.
--   The code is styled automatically thanks to
-    *[styler](https://CRAN.R-project.org/package=styler)*.
--   The documentation is formatted thanks to
-    *[devtools](https://CRAN.R-project.org/package=devtools)* and
-    *[roxygen2](https://CRAN.R-project.org/package=roxygen2)*.
+- Continuous code testing is possible thanks to [GitHub
+  actions](https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/)
+  through *[usethis](https://CRAN.R-project.org/package=usethis)*,
+  *[remotes](https://CRAN.R-project.org/package=remotes)*,
+  *[sysreqs](https://github.com/r-hub/sysreqs)* and
+  *[rcmdcheck](https://CRAN.R-project.org/package=rcmdcheck)* customized
+  to use [Bioconductor’s docker
+  containers](https://www.bioconductor.org/help/docker/) and
+  *[BiocCheck](https://bioconductor.org/packages/3.17/BiocCheck)*.
+- Code coverage assessment is possible thanks to
+  [codecov](https://codecov.io/gh) and
+  *[covr](https://CRAN.R-project.org/package=covr)*.
+- The [documentation
+  website](http://leekgroup.github.io/derfinderHelper) is automatically
+  updated thanks to
+  *[pkgdown](https://CRAN.R-project.org/package=pkgdown)*.
+- The code is styled automatically thanks to
+  *[styler](https://CRAN.R-project.org/package=styler)*.
+- The documentation is formatted thanks to
+  *[devtools](https://CRAN.R-project.org/package=devtools)* and
+  *[roxygen2](https://CRAN.R-project.org/package=roxygen2)*.
 
 For more details, check the `dev` directory.

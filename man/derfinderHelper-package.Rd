@@ -6,8 +6,7 @@
 \alias{derfinderHelper-package}
 \title{derfinderHelper: derfinder helper package}
 \description{
-Helper package for speeding up the derfinder package when using
-    multiple cores.
+Helper package for speeding up the derfinder package when using multiple cores. This package is particularly useful when using BiocParallel and it helps reduce the time spent loading the full derfinder package when running the F-statistics calculation in parallel.
 }
 \seealso{
 Useful links:

@@ -34,6 +34,6 @@ LazyData: false
 URL: https://github.com/leekgroup/derfinderHelper
 BugReports: https://support.bioconductor.org/t/derfinderHelper
 biocViews: DifferentialExpression, Sequencing, RNASeq, Software, ImmunoOncology
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
