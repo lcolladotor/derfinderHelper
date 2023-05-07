@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">derfinderHelper</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.29.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.35.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../articles/derfinderHelper.html">Get started</a>
 </li>
@@ -55,7 +51,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/leekgroup/derfinderHelper/">
+  <a href="https://github.com/leekgroup/derfinderHelper/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -70,357 +66,499 @@
 
       
 
-      </header><script src="derfinderHelper_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Introduction to derfinderHelper</h1>
-                        <h4 class="author">Leonardo Collado-Torres</h4>
+                        <h4 data-toc-skip class="author">Leonardo
+Collado-Torres</h4>
             <address class="author_afil">
-      Lieber Institute for Brain Development, Johns Hopkins Medical CampusCenter for Computational Biology, Johns Hopkins University<br><a class="author_email" href="mailto:#"></a><a href="mailto:lcolladotor@gmail.com" class="email">lcolladotor@gmail.com</a>
+      Lieber Institute for Brain Development, Johns Hopkins Medical
+CampusCenter for Computational Biology, Johns Hopkins
+University<br><a class="author_email" href="mailto:#"></a><a href="mailto:lcolladotor@gmail.com" class="email">lcolladotor@gmail.com</a>
       </address>
                   
-            <h4 class="date">23 November 2021</h4>
+            <h4 data-toc-skip class="date">7 May 2023</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/leekgroup/derfinderHelper/blob/master/vignettes/derfinderHelper.Rmd"><code>vignettes/derfinderHelper.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/leekgroup/derfinderHelper/blob/HEAD/vignettes/derfinderHelper.Rmd" class="external-link"><code>vignettes/derfinderHelper.Rmd</code></a></small>
       <div class="hidden name"><code>derfinderHelper.Rmd</code></div>
 
     </div>
 
     
     
-<div id="basics" class="section level1">
-<h1 class="hasAnchor">
-<a href="#basics" class="anchor"></a>Basics</h1>
-<div id="install-derfinderhelper" class="section level2">
-<h2 class="hasAnchor">
-<a href="#install-derfinderhelper" class="anchor"></a>Install <em><a href="https://bioconductor.org/packages/3.14/derfinderHelper">derfinderHelper</a></em>
+<div class="section level2">
+<h2 id="basics">Basics<a class="anchor" aria-label="anchor" href="#basics"></a>
 </h2>
-<p><code>R</code> is an open-source statistical environment which can be easily modified to enhance its functionality via packages. <em><a href="https://bioconductor.org/packages/3.14/derfinderHelper">derfinderHelper</a></em> is a <code>R</code> package available via the <a href="http://bioconductor/packages/derfinderHelper">Bioconductor</a> repository for packages. <code>R</code> can be installed on any operating system from <a href="https://cran.r-project.org/">CRAN</a> after which you can install <em><a href="https://bioconductor.org/packages/3.14/derfinderHelper">derfinderHelper</a></em> by using the following commands in your <code>R</code> session:</p>
+<div class="section level3">
+<h3 id="install-derfinderhelper">Install <em><a href="https://bioconductor.org/packages/3.17/derfinderHelper" class="external-link">derfinderHelper</a></em><a class="anchor" aria-label="anchor" href="#install-derfinderhelper"></a>
+</h3>
+<p><code>R</code> is an open-source statistical environment which can be
+easily modified to enhance its functionality via packages. <em><a href="https://bioconductor.org/packages/3.17/derfinderHelper" class="external-link">derfinderHelper</a></em>
+is a <code>R</code> package available via the <a href="http://bioconductor/packages/derfinderHelper" class="external-link">Bioconductor</a>
+repository for packages. <code>R</code> can be installed on any
+operating system from <a href="https://cran.r-project.org/" class="external-link">CRAN</a>
+after which you can install <em><a href="https://bioconductor.org/packages/3.17/derfinderHelper" class="external-link">derfinderHelper</a></em>
+by using the following commands in your <code>R</code> session:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
-      <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span>
-  <span class="op">}</span>
-
-<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="st">"derfinderHelper"</span><span class="op">)</span>
-
-<span class="co">## Check that you have a valid Bioconductor installation</span>
-<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/valid.html">valid</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span></span>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"derfinderHelper"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Check that you have a valid Bioconductor installation</span></span>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/valid.html" class="external-link">valid</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="required-knowledge" class="section level2">
-<h2 class="hasAnchor">
-<a href="#required-knowledge" class="anchor"></a>Required knowledge</h2>
-<p><em><a href="https://bioconductor.org/packages/3.14/derfinderHelper">derfinderHelper</a></em> is based on many other packages and in particular in those that have implemented the infrastructure needed for dealing with RNA-seq data. A <em><a href="https://bioconductor.org/packages/3.14/derfinderHelper">derfinderHelper</a></em> user is not expected to deal with those packages directly but will need to be familiar with <em><a href="https://bioconductor.org/packages/3.14/derfinder">derfinder</a></em>.</p>
-<p>If you are asking yourself the question “Where do I start using Bioconductor?” you might be interested in <a href="http://lcolladotor.github.io/2014/10/16/startbioc/#.VkOKbq6rRuU">this blog post</a>.</p>
+<div class="section level3">
+<h3 id="required-knowledge">Required knowledge<a class="anchor" aria-label="anchor" href="#required-knowledge"></a>
+</h3>
+<p><em><a href="https://bioconductor.org/packages/3.17/derfinderHelper" class="external-link">derfinderHelper</a></em>
+is based on many other packages and in particular in those that have
+implemented the infrastructure needed for dealing with RNA-seq data. A
+<em><a href="https://bioconductor.org/packages/3.17/derfinderHelper" class="external-link">derfinderHelper</a></em>
+user is not expected to deal with those packages directly but will need
+to be familiar with <em><a href="https://bioconductor.org/packages/3.17/derfinder" class="external-link">derfinder</a></em>.</p>
+<p>If you are asking yourself the question “Where do I start using
+Bioconductor?” you might be interested in <a href="http://lcolladotor.github.io/2014/10/16/startbioc/#.VkOKbq6rRuU" class="external-link">this
+blog post</a>.</p>
 </div>
-<div id="asking-for-help" class="section level2">
-<h2 class="hasAnchor">
-<a href="#asking-for-help" class="anchor"></a>Asking for help</h2>
-<p>As package developers, we try to explain clearly how to use our packages and in which order to use the functions. But <code>R</code> and <code>Bioconductor</code> have a steep learning curve so it is critical to learn where to ask for help. The blog post quoted above mentions some but we would like to highlight the <a href="https://support.bioconductor.org/">Bioconductor support site</a> as the main resource for getting help: remember to use the <code>derfinder</code> or <code>derfinderHelper</code> tags and check <a href="https://support.bioconductor.org/t/derfinder/">the older posts</a>. Other alternatives are available such as creating GitHub issues and tweeting. However, please note that if you want to receive help you should adhere to the <a href="http://www.bioconductor.org/help/support/posting-guide/">posting guidelines</a>. It is particularly critical that you provide a small reproducible example and your session information so package developers can track down the source of the error.</p>
+<div class="section level3">
+<h3 id="asking-for-help">Asking for help<a class="anchor" aria-label="anchor" href="#asking-for-help"></a>
+</h3>
+<p>As package developers, we try to explain clearly how to use our
+packages and in which order to use the functions. But <code>R</code> and
+<code>Bioconductor</code> have a steep learning curve so it is critical
+to learn where to ask for help. The blog post quoted above mentions some
+but we would like to highlight the <a href="https://support.bioconductor.org/" class="external-link">Bioconductor support site</a>
+as the main resource for getting help: remember to use the
+<code>derfinder</code> or <code>derfinderHelper</code> tags and check <a href="https://support.bioconductor.org/t/derfinder/" class="external-link">the older
+posts</a>. Other alternatives are available such as creating GitHub
+issues and tweeting. However, please note that if you want to receive
+help you should adhere to the <a href="http://www.bioconductor.org/help/support/posting-guide/" class="external-link">posting
+guidelines</a>. It is particularly critical that you provide a small
+reproducible example and your session information so package developers
+can track down the source of the error.</p>
 </div>
-<div id="citing-derfinderhelper" class="section level2">
-<h2 class="hasAnchor">
-<a href="#citing-derfinderhelper" class="anchor"></a>Citing <em><a href="https://bioconductor.org/packages/3.14/derfinderHelper">derfinderHelper</a></em>
-</h2>
-<p>We hope that <em><a href="https://bioconductor.org/packages/3.14/derfinderHelper">derfinderHelper</a></em> will be useful for your research. Please use the following information to cite the package and the overall approach. Thank you!</p>
+<div class="section level3">
+<h3 id="citing-derfinderhelper">Citing <em><a href="https://bioconductor.org/packages/3.17/derfinderHelper" class="external-link">derfinderHelper</a></em><a class="anchor" aria-label="anchor" href="#citing-derfinderhelper"></a>
+</h3>
+<p>We hope that <em><a href="https://bioconductor.org/packages/3.17/derfinderHelper" class="external-link">derfinderHelper</a></em>
+will be useful for your research. Please use the following information
+to cite the package and the overall approach. Thank you!</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## Citation info</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span><span class="op">(</span><span class="st">"derfinderHelper"</span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-## Collado-Torres L, Jaffe AE, Leek JT (2017). _derfinderHelper: derfinder
-## helper package_. doi: 10.18129/B9.bioc.derfinderHelper (URL:
-## https://doi.org/10.18129/B9.bioc.derfinderHelper),
-## https://github.com/leekgroup/derfinderHelper - R package version
-## 1.29.0, &lt;URL: http://www.bioconductor.org/packages/derfinderHelper&gt;.
-## 
-## Collado-Torres L, Nellore A, Frazee AC, Wilks C, Love MI, Langmead B,
-## Irizarry RA, Leek JT, Jaffe AE (2017). "Flexible expressed region
-## analysis for RNA-seq with derfinder." _Nucl. Acids Res._. doi:
-## 10.1093/nar/gkw852 (URL: https://doi.org/10.1093/nar/gkw852), &lt;URL:
-## http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852&gt;.
-## 
-## To see these entries in BibTeX format, use 'print(&lt;citation&gt;,
-## bibtex=TRUE)', 'toBibtex(.)', or set
-## 'options(citation.bibtex.max=999)'.</code></pre>
+<code class="sourceCode R"><span><span class="co">## Citation info</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"derfinderHelper"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## To cite package 'derfinderHelper' in publications use:</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">##   Collado-Torres L, Jaffe AE, Leek JT (2017). _derfinderHelper:</span></span>
+<span><span class="co">##   derfinder helper package_. doi:10.18129/B9.bioc.derfinderHelper</span></span>
+<span><span class="co">##   &lt;https://doi.org/10.18129/B9.bioc.derfinderHelper&gt;,</span></span>
+<span><span class="co">##   https://github.com/leekgroup/derfinderHelper - R package version</span></span>
+<span><span class="co">##   1.35.0, &lt;http://www.bioconductor.org/packages/derfinderHelper&gt;.</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">##   Collado-Torres L, Nellore A, Frazee AC, Wilks C, Love MI, Langmead B,</span></span>
+<span><span class="co">##   Irizarry RA, Leek JT, Jaffe AE (2017). "Flexible expressed region</span></span>
+<span><span class="co">##   analysis for RNA-seq with derfinder." _Nucl. Acids Res._.</span></span>
+<span><span class="co">##   doi:10.1093/nar/gkw852 &lt;https://doi.org/10.1093/nar/gkw852&gt;,</span></span>
+<span><span class="co">##   &lt;http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852&gt;.</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## To see these entries in BibTeX format, use 'print(&lt;citation&gt;,</span></span>
+<span><span class="co">## bibtex=TRUE)', 'toBibtex(.)', or set</span></span>
+<span><span class="co">## 'options(citation.bibtex.max=999)'.</span></span></code></pre>
 </div>
 </div>
-<div id="introduction-to-derfinderhelper" class="section level1">
-<h1 class="hasAnchor">
-<a href="#introduction-to-derfinderhelper" class="anchor"></a>Introduction to <em><a href="https://bioconductor.org/packages/3.14/derfinderHelper">derfinderHelper</a></em>
-</h1>
-<p><em><a href="https://bioconductor.org/packages/3.14/derfinderHelper">derfinderHelper</a></em> (Collado-Torres, Jaffe, and Leek, 2017) is a small package that was created to speed up the F-statistics approach implemented in the parent package <em><a href="https://bioconductor.org/packages/3.14/derfinder">derfinder</a></em>. It contains a single function, <code><a href="../reference/fstats.apply.html">fstats.apply()</a></code>, which is used to calculate the F-statistics for a given data matrix, null and an alternative models.</p>
-<p>The data is generally arranged in an matrix where the rows (<span class="math inline">\(n\)</span>) are the genomic features of interest (gene-level summaries, exon-level summaries, or base-level data) and the columns (<span class="math inline">\(m\)</span>) represent the samples. The other two main arguments for <code><a href="../reference/fstats.apply.html">fstats.apply()</a></code> are the null and alternative model matrices which are <span class="math inline">\(m \times p_0\)</span> and <span class="math inline">\(m \times p\)</span> where <span class="math inline">\(p_0\)</span> is the number of covariates in the null model and <span class="math inline">\(p\)</span> is the number of covariates in the alternative model. The models have to be nested and thus by definition <span class="math inline">\(p &gt; p_0\)</span>. The end result is a vector of F-statistics with length <span class="math inline">\(n\)</span>, which is run length encoded for memory saving purposes.</p>
-<p>Other arguments of <code><a href="../reference/fstats.apply.html">fstats.apply()</a></code> are related to flow in <em><a href="https://bioconductor.org/packages/3.14/derfinder">derfinder</a></em> such as the scaling factor (<code>scalefac</code>) used, whether to subset the data (<code>index</code>), and if the data was separated into chunks and saved to disk to lower the memory load (<code>lowMemDir</code>).</p>
-<p>Implementation-wise, <code>adjustF</code> is useful when the denominator of the F-statistic calculation is too small. Finally, <code>method</code> controls how will the F-statistics be calculated.</p>
+<div class="section level2">
+<h2 id="introduction-to-derfinderhelper">Introduction to <em><a href="https://bioconductor.org/packages/3.17/derfinderHelper" class="external-link">derfinderHelper</a></em><a class="anchor" aria-label="anchor" href="#introduction-to-derfinderhelper"></a>
+</h2>
+<p><em><a href="https://bioconductor.org/packages/3.17/derfinderHelper" class="external-link">derfinderHelper</a></em>
+(Collado-Torres, Jaffe, and Leek, 2017) is a small package that was
+created to speed up the F-statistics approach implemented in the parent
+package <em><a href="https://bioconductor.org/packages/3.17/derfinder" class="external-link">derfinder</a></em>.
+It contains a single function, <code><a href="../reference/fstats.apply.html">fstats.apply()</a></code>, which is
+used to calculate the F-statistics for a given data matrix, null and an
+alternative models.</p>
+<p>The data is generally arranged in an matrix where the rows (<span class="math inline">\(n\)</span>) are the genomic features of interest
+(gene-level summaries, exon-level summaries, or base-level data) and the
+columns (<span class="math inline">\(m\)</span>) represent the samples.
+The other two main arguments for <code><a href="../reference/fstats.apply.html">fstats.apply()</a></code> are the
+null and alternative model matrices which are <span class="math inline">\(m \times p_0\)</span> and <span class="math inline">\(m \times p\)</span> where <span class="math inline">\(p_0\)</span> is the number of covariates in the
+null model and <span class="math inline">\(p\)</span> is the number of
+covariates in the alternative model. The models have to be nested and
+thus by definition <span class="math inline">\(p &gt; p_0\)</span>. The
+end result is a vector of F-statistics with length <span class="math inline">\(n\)</span>, which is run length encoded for memory
+saving purposes.</p>
+<p>Other arguments of <code><a href="../reference/fstats.apply.html">fstats.apply()</a></code> are related to flow in
+<em><a href="https://bioconductor.org/packages/3.17/derfinder" class="external-link">derfinder</a></em>
+such as the scaling factor (<code>scalefac</code>) used, whether to
+subset the data (<code>index</code>), and if the data was separated into
+chunks and saved to disk to lower the memory load
+(<code>lowMemDir</code>).</p>
+<p>Implementation-wise, <code>adjustF</code> is useful when the
+denominator of the F-statistic calculation is too small. Finally,
+<code>method</code> controls how will the F-statistics be
+calculated.</p>
 <ul>
 <li>
-<code>Matrix</code> is the recommended option because it uses around half the memory load of <code>regular</code> and can be faster. Specially if the data was saved in this format previously by <em><a href="https://bioconductor.org/packages/3.14/derfinder">derfinder</a></em>.</li>
+<code>Matrix</code> is the recommended option because it uses around
+half the memory load of <code>regular</code> and can be faster.
+Specially if the data was saved in this format previously by <em><a href="https://bioconductor.org/packages/3.17/derfinder" class="external-link">derfinder</a></em>.</li>
 <li>
-<code>Rle</code> uses the least amount of memory but gets very slow as the number of samples increases. Thus making it less than ideal in several cases.</li>
+<code>Rle</code> uses the least amount of memory but gets very slow
+as the number of samples increases. Thus making it less than ideal in
+several cases.</li>
 <li>
-<code>regular</code> uses base <code>R</code> to calculate the F-statistics and can require a large amount of memory. This is noticeable when using several cores to run <code><a href="../reference/fstats.apply.html">fstats.apply()</a></code> on different portions of the data.</li>
+<code>regular</code> uses base <code>R</code> to calculate the
+F-statistics and can require a large amount of memory. This is
+noticeable when using several cores to run <code><a href="../reference/fstats.apply.html">fstats.apply()</a></code>
+on different portions of the data.</li>
 </ul>
-<p>The F-statistics for each feature <span class="math inline">\(i\)</span> are calculated using the following formula:</p>
-<p><span class="math display">\[ F_i = \frac{ (\text{RSS0}_i - \text{RSS1}_i)/(\text{df}_1 - \text{df}_0) }{ \text{adjustF} + (\text{RSS1}_i / (p - p_0 - \text{df_1}))} \]</span></p>
+<p>The F-statistics for each feature <span class="math inline">\(i\)</span> are calculated using the following
+formula:</p>
+<p><span class="math display">\[ F_i = \frac{ (\text{RSS0}_i -
+\text{RSS1}_i)/(\text{df}_1 - \text{df}_0) }{ \text{adjustF} +
+(\text{RSS1}_i / (p - p_0 - \text{df_1}))} \]</span></p>
 </div>
-<div id="example" class="section level1">
-<h1 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h1>
-<p>The following section walks through an example. However, in practice, you will probably not use this package directly and it will be used via <em><a href="https://bioconductor.org/packages/3.14/derfinder">derfinder</a></em>.</p>
-<div id="data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#data" class="anchor"></a>Data</h2>
-<p>First lets create an example data set where we have information for 1000 features and 16 samples where samples 1 to 4 are from group A, 5 to 8 from group B, 9 to 12 from group C, and 13 to 16 from group D.</p>
+<div class="section level2">
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+</h2>
+<p>The following section walks through an example. However, in practice,
+you will probably not use this package directly and it will be used via
+<em><a href="https://bioconductor.org/packages/3.17/derfinder" class="external-link">derfinder</a></em>.</p>
+<div class="section level3">
+<h3 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a>
+</h3>
+<p>First lets create an example data set where we have information for
+1000 features and 16 samples where samples 1 to 4 are from group A, 5 to
+8 from group B, 9 to 12 from group C, and 13 to 16 from group D.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## Create some toy data</span>
-<span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://bioconductor.org/packages/IRanges">"IRanges"</a></span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">20140923</span><span class="op">)</span>
-<span class="va">toyData</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/DataFrame-class.html">DataFrame</a></span><span class="op">(</span>
-    <span class="st">"sample1"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,
-    <span class="st">"sample2"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,
-    <span class="st">"sample3"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,
-    <span class="st">"sample4"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,
-    <span class="st">"sample5"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">15</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,
-    <span class="st">"sample6"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">15</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,
-    <span class="st">"sample7"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">15</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,
-    <span class="st">"sample8"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">15</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,
-    <span class="st">"sample9"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,
-    <span class="st">"sample10"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,
-    <span class="st">"sample11"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,
-    <span class="st">"sample12"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,
-    <span class="st">"sample13"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">100</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,
-    <span class="st">"sample14"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">100</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,
-    <span class="st">"sample15"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">100</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,
-    <span class="st">"sample16"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">100</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
-<span class="op">)</span>
-
-<span class="co">## Lets say that we have 4 groups</span>
-<span class="va">group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Vector-class.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/chartr.html">toupper</a></span><span class="op">(</span><span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co">## Note that some groups have higher coverage, we can adjust for this in the model</span>
-<span class="va">sampleDepth</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/lapply.html">sapply</a></span><span class="op">(</span><span class="va">toyData</span>, <span class="va">sum</span><span class="op">)</span>
-<span class="va">sampleDepth</span></code></pre></div>
-<pre><code>##  sample1  sample2  sample3  sample4  sample5  sample6  sample7  sample8 
-##     4948     5044     5054     5027     7464     7407     7504     7607 
-##  sample9 sample10 sample11 sample12 sample13 sample14 sample15 sample16 
-##     9797     9982    10028     9797    50682    49921    49332    50421</code></pre>
+<code class="sourceCode R"><span><span class="co">## Create some toy data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://bioconductor.org/packages/IRanges" class="external-link">"IRanges"</a></span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">20140923</span><span class="op">)</span></span>
+<span><span class="va">toyData</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/DataFrame-class.html" class="external-link">DataFrame</a></span><span class="op">(</span></span>
+<span>    <span class="st">"sample1"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html" class="external-link">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    <span class="st">"sample2"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html" class="external-link">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    <span class="st">"sample3"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html" class="external-link">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    <span class="st">"sample4"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html" class="external-link">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    <span class="st">"sample5"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html" class="external-link">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">15</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    <span class="st">"sample6"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html" class="external-link">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">15</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    <span class="st">"sample7"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html" class="external-link">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">15</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    <span class="st">"sample8"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html" class="external-link">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">15</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    <span class="st">"sample9"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html" class="external-link">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    <span class="st">"sample10"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html" class="external-link">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    <span class="st">"sample11"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html" class="external-link">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    <span class="st">"sample12"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html" class="external-link">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    <span class="st">"sample13"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html" class="external-link">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">100</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    <span class="st">"sample14"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html" class="external-link">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">100</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    <span class="st">"sample15"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html" class="external-link">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">100</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    <span class="st">"sample16"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Rle-class.html" class="external-link">Rle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">100</span>, <span class="fl">1000</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Lets say that we have 4 groups</span></span>
+<span><span class="va">group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/chartr.html" class="external-link">toupper</a></span><span class="op">(</span><span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Note that some groups have higher coverage, we can adjust for this in the model</span></span>
+<span><span class="va">sampleDepth</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">toyData</span>, <span class="va">sum</span><span class="op">)</span></span>
+<span><span class="va">sampleDepth</span></span></code></pre></div>
+<pre><code><span><span class="co">##  sample1  sample2  sample3  sample4  sample5  sample6  sample7  sample8 </span></span>
+<span><span class="co">##     4948     5044     5054     5027     7464     7407     7504     7607 </span></span>
+<span><span class="co">##  sample9 sample10 sample11 sample12 sample13 sample14 sample15 sample16 </span></span>
+<span><span class="co">##     9797     9982    10028     9797    50682    49921    49332    50421</span></span></code></pre>
 </div>
-<div id="models" class="section level2">
-<h2 class="hasAnchor">
-<a href="#models" class="anchor"></a>Models</h2>
-<p>Next we create the model matrices for our example data set. Lets say that we want to calculate F-statistics comparing the alternative hypothesis that the group coefficients are not 0 versus the null hypothesis that they are equal to 0, when adjusting for the sample depth.</p>
+<div class="section level3">
+<h3 id="models">Models<a class="anchor" aria-label="anchor" href="#models"></a>
+</h3>
+<p>Next we create the model matrices for our example data set. Lets say
+that we want to calculate F-statistics comparing the alternative
+hypothesis that the group coefficients are not 0 versus the null
+hypothesis that they are equal to 0, when adjusting for the sample
+depth.</p>
 <p>To do so, we create the nested models.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## Build the model matrices</span>
-<span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="va">sampleDepth</span> <span class="op">+</span> <span class="va">group</span><span class="op">)</span>
-<span class="va">mod0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="op">~</span><span class="va">sampleDepth</span><span class="op">)</span>
-
-<span class="co">## Explore them</span>
-<span class="va">mod</span></code></pre></div>
-<pre><code>##    (Intercept) sampleDepth groupB groupC groupD
-## 1            1        4948      0      0      0
-## 2            1        5044      0      0      0
-## 3            1        5054      0      0      0
-## 4            1        5027      0      0      0
-## 5            1        7464      1      0      0
-## 6            1        7407      1      0      0
-## 7            1        7504      1      0      0
-## 8            1        7607      1      0      0
-## 9            1        9797      0      1      0
-## 10           1        9982      0      1      0
-## 11           1       10028      0      1      0
-## 12           1        9797      0      1      0
-## 13           1       50682      0      0      1
-## 14           1       49921      0      0      1
-## 15           1       49332      0      0      1
-## 16           1       50421      0      0      1
-## attr(,"assign")
-## [1] 0 1 2 2 2
-## attr(,"contrasts")
-## attr(,"contrasts")$group
-## [1] "contr.treatment"</code></pre>
+<code class="sourceCode R"><span><span class="co">## Build the model matrices</span></span>
+<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="va">sampleDepth</span> <span class="op">+</span> <span class="va">group</span><span class="op">)</span></span>
+<span><span class="va">mod0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">model.matrix</a></span><span class="op">(</span><span class="op">~</span><span class="va">sampleDepth</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Explore them</span></span>
+<span><span class="va">mod</span></span></code></pre></div>
+<pre><code><span><span class="co">##    (Intercept) sampleDepth groupB groupC groupD</span></span>
+<span><span class="co">## 1            1        4948      0      0      0</span></span>
+<span><span class="co">## 2            1        5044      0      0      0</span></span>
+<span><span class="co">## 3            1        5054      0      0      0</span></span>
+<span><span class="co">## 4            1        5027      0      0      0</span></span>
+<span><span class="co">## 5            1        7464      1      0      0</span></span>
+<span><span class="co">## 6            1        7407      1      0      0</span></span>
+<span><span class="co">## 7            1        7504      1      0      0</span></span>
+<span><span class="co">## 8            1        7607      1      0      0</span></span>
+<span><span class="co">## 9            1        9797      0      1      0</span></span>
+<span><span class="co">## 10           1        9982      0      1      0</span></span>
+<span><span class="co">## 11           1       10028      0      1      0</span></span>
+<span><span class="co">## 12           1        9797      0      1      0</span></span>
+<span><span class="co">## 13           1       50682      0      0      1</span></span>
+<span><span class="co">## 14           1       49921      0      0      1</span></span>
+<span><span class="co">## 15           1       49332      0      0      1</span></span>
+<span><span class="co">## 16           1       50421      0      0      1</span></span>
+<span><span class="co">## attr(,"assign")</span></span>
+<span><span class="co">## [1] 0 1 2 2 2</span></span>
+<span><span class="co">## attr(,"contrasts")</span></span>
+<span><span class="co">## attr(,"contrasts")$group</span></span>
+<span><span class="co">## [1] "contr.treatment"</span></span></code></pre>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mod0</span></code></pre></div>
-<pre><code>##    (Intercept) sampleDepth
-## 1            1        4948
-## 2            1        5044
-## 3            1        5054
-## 4            1        5027
-## 5            1        7464
-## 6            1        7407
-## 7            1        7504
-## 8            1        7607
-## 9            1        9797
-## 10           1        9982
-## 11           1       10028
-## 12           1        9797
-## 13           1       50682
-## 14           1       49921
-## 15           1       49332
-## 16           1       50421
-## attr(,"assign")
-## [1] 0 1</code></pre>
+<code class="sourceCode R"><span><span class="va">mod0</span></span></code></pre></div>
+<pre><code><span><span class="co">##    (Intercept) sampleDepth</span></span>
+<span><span class="co">## 1            1        4948</span></span>
+<span><span class="co">## 2            1        5044</span></span>
+<span><span class="co">## 3            1        5054</span></span>
+<span><span class="co">## 4            1        5027</span></span>
+<span><span class="co">## 5            1        7464</span></span>
+<span><span class="co">## 6            1        7407</span></span>
+<span><span class="co">## 7            1        7504</span></span>
+<span><span class="co">## 8            1        7607</span></span>
+<span><span class="co">## 9            1        9797</span></span>
+<span><span class="co">## 10           1        9982</span></span>
+<span><span class="co">## 11           1       10028</span></span>
+<span><span class="co">## 12           1        9797</span></span>
+<span><span class="co">## 13           1       50682</span></span>
+<span><span class="co">## 14           1       49921</span></span>
+<span><span class="co">## 15           1       49332</span></span>
+<span><span class="co">## 16           1       50421</span></span>
+<span><span class="co">## attr(,"assign")</span></span>
+<span><span class="co">## [1] 0 1</span></span></code></pre>
 </div>
-<div id="get-f-statistics" class="section level2">
-<h2 class="hasAnchor">
-<a href="#get-f-statistics" class="anchor"></a>Get F-statistics</h2>
-<p>Finally, we can calculate the F-statistics using <code><a href="../reference/fstats.apply.html">fstats.apply()</a></code>.</p>
+<div class="section level3">
+<h3 id="get-f-statistics">Get F-statistics<a class="anchor" aria-label="anchor" href="#get-f-statistics"></a>
+</h3>
+<p>Finally, we can calculate the F-statistics using
+<code><a href="../reference/fstats.apply.html">fstats.apply()</a></code>.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/leekgroup/derfinderHelper">"derfinderHelper"</a></span><span class="op">)</span>
-<span class="va">fstats</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fstats.apply.html">fstats.apply</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">toyData</span>, mod <span class="op">=</span> <span class="va">mod</span>, mod0 <span class="op">=</span> <span class="va">mod0</span>, scalefac <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="va">fstats</span></code></pre></div>
-<pre><code>## numeric-Rle of length 1000 with 1000 runs
-##   Lengths:          1          1          1 ...          1          1
-##   Values :  1.8484614  0.5732806  0.2493710 ...  0.1197002  1.3113647</code></pre>
-<p>We can then proceed to use this information in <em><a href="https://bioconductor.org/packages/3.14/derfinder">derfinder</a></em> or in any way you like.</p>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/leekgroup/derfinderHelper" class="external-link">"derfinderHelper"</a></span><span class="op">)</span></span>
+<span><span class="va">fstats</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fstats.apply.html">fstats.apply</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">toyData</span>, mod <span class="op">=</span> <span class="va">mod</span>, mod0 <span class="op">=</span> <span class="va">mod0</span>, scalefac <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">fstats</span></span></code></pre></div>
+<pre><code><span><span class="co">## numeric-Rle of length 1000 with 1000 runs</span></span>
+<span><span class="co">##   Lengths:          1          1          1 ...          1          1</span></span>
+<span><span class="co">##   Values :  1.8484614  0.5732806  0.2493710 ...  0.1197002  1.3113647</span></span></code></pre>
+<p>We can then proceed to use this information in <em><a href="https://bioconductor.org/packages/3.17/derfinder" class="external-link">derfinder</a></em>
+or in any way you like.</p>
 </div>
 </div>
-<div id="details" class="section level1">
-<h1 class="hasAnchor">
-<a href="#details" class="anchor"></a>Details</h1>
-<p>We created <em><a href="https://bioconductor.org/packages/3.14/derfinderHelper">derfinderHelper</a></em> for calculating F-statistics using <code>SnowParam()</code> from <em><a href="https://bioconductor.org/packages/3.14/BiocParallel">BiocParallel</a></em>. Using this form of parallelization requires loading the necessary packages in the child processes. Because <em><a href="https://bioconductor.org/packages/3.14/derfinder">derfinder</a></em> takes a long time to load, we shipped off <code><a href="../reference/fstats.apply.html">fstats.apply()</a></code> to its own package to improve the speed of the calculations while retaining the memory advantages of <code>SnowParam()</code> over <code>MulticoreParam()</code>.</p>
-<p>Note that transforming the data from a <code>DataFrame</code> to a <code>dgCMatrix</code> takes some time, so the most efficient performance is achieved when the data is converted at the beginning instead of at every permutation calculation. This is done in <code>derfinder::preprocessCoverage()</code> when <code>lowMemDir</code> is specified.</p>
+<div class="section level2">
+<h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a>
+</h2>
+<p>We created <em><a href="https://bioconductor.org/packages/3.17/derfinderHelper" class="external-link">derfinderHelper</a></em>
+for calculating F-statistics using <code>SnowParam()</code> from <em><a href="https://bioconductor.org/packages/3.17/BiocParallel" class="external-link">BiocParallel</a></em>.
+Using this form of parallelization requires loading the necessary
+packages in the child processes. Because <em><a href="https://bioconductor.org/packages/3.17/derfinder" class="external-link">derfinder</a></em>
+takes a long time to load, we shipped off <code><a href="../reference/fstats.apply.html">fstats.apply()</a></code> to
+its own package to improve the speed of the calculations while retaining
+the memory advantages of <code>SnowParam()</code> over
+<code>MulticoreParam()</code>.</p>
+<p>Note that transforming the data from a <code>DataFrame</code> to a
+<code>dgCMatrix</code> takes some time, so the most efficient
+performance is achieved when the data is converted at the beginning
+instead of at every permutation calculation. This is done in
+<code>derfinder::preprocessCoverage()</code> when <code>lowMemDir</code>
+is specified.</p>
 </div>
-<div id="reproducibility" class="section level1">
-<h1 class="hasAnchor">
-<a href="#reproducibility" class="anchor"></a>Reproducibility</h1>
+<div class="section level2">
+<h2 id="reproducibility">Reproducibility<a class="anchor" aria-label="anchor" href="#reproducibility"></a>
+</h2>
 <p>This package was made possible thanks to:</p>
 <ul>
-<li>R (R Core Team, 2021)</li>
+<li>R (R Core Team, 2023)</li>
 <li>
-<em><a href="https://bioconductor.org/packages/3.14/IRanges">IRanges</a></em> (Lawrence, Huber, Pagès, Aboyoun, Carlson, Gentleman, Morgan, and Carey, 2013)</li>
+<em><a href="https://bioconductor.org/packages/3.17/IRanges" class="external-link">IRanges</a></em>
+(Lawrence, Huber, Pagès, Aboyoun, Carlson, Gentleman, Morgan, and Carey,
+2013)</li>
 <li>
-<em><a href="https://CRAN.R-project.org/package=Matrix">Matrix</a></em> (Bates and Maechler, 2021)</li>
+<em><a href="https://CRAN.R-project.org/package=Matrix" class="external-link">Matrix</a></em> (Bates,
+Maechler, and Jagan, 2023)</li>
 <li>
-<em><a href="https://bioconductor.org/packages/3.14/S4Vectors">S4Vectors</a></em> (Pagès, Lawrence, and Aboyoun, 2017)</li>
+<em><a href="https://bioconductor.org/packages/3.17/S4Vectors" class="external-link">S4Vectors</a></em>
+(Pagès, Lawrence, and Aboyoun, 2017)</li>
 <li>
-<em><a href="https://CRAN.R-project.org/package=sessioninfo">sessioninfo</a></em> (Wickham, Chang, Flight, Müller, and Hester, 2021)</li>
+<em><a href="https://CRAN.R-project.org/package=sessioninfo" class="external-link">sessioninfo</a></em>
+(Wickham, Chang, Flight, Müller, and Hester, 2021)</li>
 <li>
-<em><a href="https://CRAN.R-project.org/package=knitr">knitr</a></em> (Xie, 2014)</li>
+<em><a href="https://CRAN.R-project.org/package=knitr" class="external-link">knitr</a></em> (Xie,
+2014)</li>
 <li>
-<em><a href="https://bioconductor.org/packages/3.14/BiocStyle">BiocStyle</a></em> (Oleś, 2021)</li>
+<em><a href="https://bioconductor.org/packages/3.17/BiocStyle" class="external-link">BiocStyle</a></em>
+(Oleś, 2023)</li>
 <li>
-<em><a href="https://CRAN.R-project.org/package=RefManageR">RefManageR</a></em> (McLean, 2017)</li>
-<li><em><a href="https://CRAN.R-project.org/package=rmarkdown">rmarkdown</a></em></li>
+<em><a href="https://CRAN.R-project.org/package=RefManageR" class="external-link">RefManageR</a></em>
+(McLean, 2017)</li>
+<li><em><a href="https://CRAN.R-project.org/package=rmarkdown" class="external-link">rmarkdown</a></em></li>
 <li>
-<em><a href="https://CRAN.R-project.org/package=testthat">testthat</a></em> (Wickham, 2011)</li>
+<em><a href="https://CRAN.R-project.org/package=testthat" class="external-link">testthat</a></em>
+(Wickham, 2011)</li>
 </ul>
 <p>Code for creating the vignette</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## Create the vignette</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rstudio/rmarkdown">"rmarkdown"</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="fu"><a href="https://pkgs.rstudio.com/rmarkdown/reference/render.html">render</a></span><span class="op">(</span><span class="st">"derfinderHelper.Rmd"</span>, <span class="st">"BiocStyle::html_document"</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co">## Extract the R code</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://yihui.org/knitr/">"knitr"</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html">knit</a></span><span class="op">(</span><span class="st">"derfinderHelper.Rmd"</span>, tangle <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## Create the vignette</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rstudio/rmarkdown" class="external-link">"rmarkdown"</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="fu"><a href="https://pkgs.rstudio.com/rmarkdown/reference/render.html" class="external-link">render</a></span><span class="op">(</span><span class="st">"derfinderHelper.Rmd"</span>, <span class="st">"BiocStyle::html_document"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Extract the R code</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://yihui.org/knitr/" class="external-link">"knitr"</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html" class="external-link">knit</a></span><span class="op">(</span><span class="st">"derfinderHelper.Rmd"</span>, tangle <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>Date the vignette was generated.</p>
-<pre><code>## [1] "2021-11-23 01:06:21 UTC"</code></pre>
+<pre><code><span><span class="co">## [1] "2023-05-07 00:36:19 UTC"</span></span></code></pre>
 <p>Wallclock time spent generating the vignette.</p>
-<pre><code>## Time difference of 3.599 secs</code></pre>
+<pre><code><span><span class="co">## Time difference of 3.565 secs</span></span></code></pre>
 <p><code>R</code> session information.</p>
-<pre><code>## ─ Session info  ──────────────────────────────────────────────────────────────────────────────────────────────────────
-##  hash: money bag, person gesturing OK, bullet train
-## 
-##  setting  value
-##  version  R version 4.1.2 (2021-11-01)
-##  os       Ubuntu 20.04.3 LTS
-##  system   x86_64, linux-gnu
-##  ui       X11
-##  language (EN)
-##  collate  en_US.UTF-8
-##  ctype    en_US.UTF-8
-##  tz       UTC
-##  date     2021-11-23
-##  pandoc   2.14.0.3 @ /usr/local/bin/ (via rmarkdown)
-## 
-## ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────
-##  package         * version date (UTC) lib source
-##  BiocGenerics    * 0.40.0  2021-10-26 [1] Bioconductor
-##  BiocManager       1.30.16 2021-06-15 [2] CRAN (R 4.1.2)
-##  BiocStyle       * 2.22.0  2021-10-26 [1] Bioconductor
-##  bookdown          0.24    2021-09-02 [1] RSPM (R 4.1.0)
-##  cachem            1.0.6   2021-08-19 [2] RSPM (R 4.1.0)
-##  cli               3.1.0   2021-10-27 [2] RSPM (R 4.1.0)
-##  crayon            1.4.2   2021-10-29 [2] RSPM (R 4.1.0)
-##  derfinderHelper * 1.29.0  2021-11-23 [1] Bioconductor
-##  desc              1.4.0   2021-09-28 [2] RSPM (R 4.1.0)
-##  digest            0.6.28  2021-09-23 [2] RSPM (R 4.1.0)
-##  evaluate          0.14    2019-05-28 [2] RSPM (R 4.1.0)
-##  fastmap           1.1.0   2021-01-25 [2] RSPM (R 4.1.0)
-##  fs                1.5.0   2020-07-31 [2] RSPM (R 4.1.0)
-##  generics          0.1.1   2021-10-25 [2] RSPM (R 4.1.0)
-##  htmltools         0.5.2   2021-08-25 [1] RSPM (R 4.1.0)
-##  httr              1.4.2   2020-07-20 [2] RSPM (R 4.1.0)
-##  IRanges         * 2.28.0  2021-10-26 [1] Bioconductor
-##  jquerylib         0.1.4   2021-04-26 [1] RSPM (R 4.1.0)
-##  jsonlite          1.7.2   2020-12-09 [2] RSPM (R 4.1.0)
-##  knitr             1.36    2021-09-29 [2] RSPM (R 4.1.0)
-##  lattice           0.20-45 2021-09-22 [3] CRAN (R 4.1.2)
-##  lubridate         1.8.0   2021-10-07 [1] RSPM (R 4.1.0)
-##  magrittr          2.0.1   2020-11-17 [2] RSPM (R 4.1.0)
-##  Matrix            1.3-4   2021-06-01 [3] CRAN (R 4.1.2)
-##  memoise           2.0.0   2021-01-26 [2] RSPM (R 4.1.0)
-##  pkgdown           1.6.1   2020-09-12 [1] RSPM (R 4.1.0)
-##  plyr              1.8.6   2020-03-03 [1] RSPM (R 4.1.0)
-##  R6                2.5.1   2021-08-19 [2] RSPM (R 4.1.0)
-##  ragg              1.2.0   2021-10-30 [1] RSPM (R 4.1.0)
-##  Rcpp              1.0.7   2021-07-07 [1] RSPM (R 4.1.0)
-##  RefManageR      * 1.3.0   2020-11-13 [1] RSPM (R 4.1.0)
-##  rlang             0.4.12  2021-10-18 [2] RSPM (R 4.1.0)
-##  rmarkdown         2.11    2021-09-14 [1] RSPM (R 4.1.0)
-##  rprojroot         2.0.2   2020-11-15 [2] RSPM (R 4.1.0)
-##  S4Vectors       * 0.32.3  2021-11-21 [1] Bioconductor
-##  sessioninfo     * 1.2.1   2021-11-02 [2] RSPM (R 4.1.0)
-##  stringi           1.7.5   2021-10-04 [2] RSPM (R 4.1.0)
-##  stringr           1.4.0   2019-02-10 [2] RSPM (R 4.1.0)
-##  systemfonts       1.0.3   2021-10-13 [1] RSPM (R 4.1.0)
-##  textshaping       0.3.6   2021-10-13 [1] RSPM (R 4.1.0)
-##  xfun              0.28    2021-11-04 [2] RSPM (R 4.1.0)
-##  xml2              1.3.2   2020-04-23 [2] RSPM (R 4.1.0)
-##  yaml              2.2.1   2020-02-01 [2] RSPM (R 4.1.0)
-## 
-##  [1] /__w/_temp/Library
-##  [2] /usr/local/lib/R/site-library
-##  [3] /usr/local/lib/R/library
-## 
-## ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB; font-weight: bold;">─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────</span></span></span>
+<span><span class="co">##  <span style="color: #555555; font-style: italic;">setting </span> <span style="color: #555555; font-style: italic;">value</span></span></span>
+<span><span class="co">##  version  R version 4.3.0 (2023-04-21)</span></span>
+<span><span class="co">##  os       Ubuntu 22.04.2 LTS</span></span>
+<span><span class="co">##  system   x86_64, linux-gnu</span></span>
+<span><span class="co">##  ui       X11</span></span>
+<span><span class="co">##  language en</span></span>
+<span><span class="co">##  collate  en_US.UTF-8</span></span>
+<span><span class="co">##  ctype    en_US.UTF-8</span></span>
+<span><span class="co">##  tz       UTC</span></span>
+<span><span class="co">##  date     2023-05-07</span></span>
+<span><span class="co">##  pandoc   2.19.2 @ /usr/local/bin/ (via rmarkdown)</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## <span style="color: #00BBBB; font-weight: bold;">─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────</span></span></span>
+<span><span class="co">##  <span style="color: #555555; font-style: italic;">package        </span> <span style="color: #555555; font-style: italic;">*</span> <span style="color: #555555; font-style: italic;">version</span> <span style="color: #555555; font-style: italic;">date (UTC)</span> <span style="color: #555555; font-style: italic;">lib</span> <span style="color: #555555; font-style: italic;">source</span></span></span>
+<span><span class="co">##  backports         1.4.1   <span style="color: #555555;">2021-12-13</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">##  bibtex            0.5.1   <span style="color: #555555;">2023-01-26</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  BiocGenerics    * 0.46.0  <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">##  BiocManager       1.30.20 <span style="color: #555555;">2023-02-24</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">##  BiocStyle       * 2.28.0  <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">##  bookdown          0.33    <span style="color: #555555;">2023-03-06</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  bslib             0.4.2   <span style="color: #555555;">2022-12-16</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  cachem            1.0.8   <span style="color: #555555;">2023-05-01</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  cli               3.6.1   <span style="color: #555555;">2023-03-23</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  derfinderHelper * 1.35.0  <span style="color: #555555;">2023-05-07</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">##  desc              1.4.2   <span style="color: #555555;">2022-09-08</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  digest            0.6.31  <span style="color: #555555;">2022-12-11</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  evaluate          0.20    <span style="color: #555555;">2023-01-17</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  fastmap           1.1.1   <span style="color: #555555;">2023-02-24</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  fs                1.6.2   <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  generics          0.1.3   <span style="color: #555555;">2022-07-05</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">##  glue              1.6.2   <span style="color: #555555;">2022-02-24</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  htmltools         0.5.5   <span style="color: #555555;">2023-03-23</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  httr              1.4.5   <span style="color: #555555;">2023-02-24</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  IRanges         * 2.34.0  <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">##  jquerylib         0.1.4   <span style="color: #555555;">2021-04-26</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  jsonlite          1.8.4   <span style="color: #555555;">2022-12-06</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  knitr             1.42    <span style="color: #555555;">2023-01-25</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  lattice           0.21-8  <span style="color: #555555;">2023-04-05</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">##  lifecycle         1.0.3   <span style="color: #555555;">2022-10-07</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  lubridate         1.9.2   <span style="color: #555555;">2023-02-10</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  magrittr          2.0.3   <span style="color: #555555;">2022-03-30</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  Matrix            1.5-4   <span style="color: #555555;">2023-04-04</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">##  memoise           2.0.1   <span style="color: #555555;">2021-11-26</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  pkgdown           2.0.7   <span style="color: #555555;">2022-12-14</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  plyr              1.8.8   <span style="color: #555555;">2022-11-11</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">##  purrr             1.0.1   <span style="color: #555555;">2023-01-10</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  R6                2.5.1   <span style="color: #555555;">2021-08-19</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  ragg              1.2.5   <span style="color: #555555;">2023-01-12</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  Rcpp              1.0.10  <span style="color: #555555;">2023-01-22</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  RefManageR      * 1.4.0   <span style="color: #555555;">2022-09-30</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">##  rlang             1.1.1   <span style="color: #555555;">2023-04-28</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  rmarkdown         2.21    <span style="color: #555555;">2023-03-26</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  rprojroot         2.0.3   <span style="color: #555555;">2022-04-02</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  S4Vectors       * 0.38.1  <span style="color: #555555;">2023-05-02</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">##  sass              0.4.6   <span style="color: #555555;">2023-05-03</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  sessioninfo     * 1.2.2   <span style="color: #555555;">2021-12-06</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  stringi           1.7.12  <span style="color: #555555;">2023-01-11</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  stringr           1.5.0   <span style="color: #555555;">2022-12-02</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  systemfonts       1.0.4   <span style="color: #555555;">2022-02-11</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  textshaping       0.3.6   <span style="color: #555555;">2021-10-13</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  timechange        0.2.0   <span style="color: #555555;">2023-01-11</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  vctrs             0.6.2   <span style="color: #555555;">2023-04-19</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  xfun              0.39    <span style="color: #555555;">2023-04-20</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  xml2              1.3.4   <span style="color: #555555;">2023-04-27</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">##  yaml              2.3.7   <span style="color: #555555;">2023-01-23</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## <span style="color: #555555;"> [1] /__w/_temp/Library</span></span></span>
+<span><span class="co">## <span style="color: #555555;"> [2] /usr/local/lib/R/site-library</span></span></span>
+<span><span class="co">## <span style="color: #555555;"> [3] /usr/local/lib/R/library</span></span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## <span style="color: #00BBBB; font-weight: bold;">──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span></span></span></code></pre>
 </div>
-<div id="bibliography" class="section level1">
-<h1 class="hasAnchor">
-<a href="#bibliography" class="anchor"></a>Bibliography</h1>
-<p>This vignette was generated using <em><a href="https://bioconductor.org/packages/3.14/BiocStyle">BiocStyle</a></em> (Oleś, 2021) with <em><a href="https://CRAN.R-project.org/package=knitr">knitr</a></em> (Xie, 2014) and <em><a href="https://CRAN.R-project.org/package=rmarkdown">rmarkdown</a></em> running behind the scenes.</p>
-<p>Citations made with <em><a href="https://CRAN.R-project.org/package=RefManageR">RefManageR</a></em> (McLean, 2017).</p>
+<div class="section level2">
+<h2 id="bibliography">Bibliography<a class="anchor" aria-label="anchor" href="#bibliography"></a>
+</h2>
+<p>This vignette was generated using <em><a href="https://bioconductor.org/packages/3.17/BiocStyle" class="external-link">BiocStyle</a></em>
+(Oleś, 2023) with <em><a href="https://CRAN.R-project.org/package=knitr" class="external-link">knitr</a></em> (Xie,
+2014) and <em><a href="https://CRAN.R-project.org/package=rmarkdown" class="external-link">rmarkdown</a></em>
+running behind the scenes.</p>
+<p>Citations made with <em><a href="https://CRAN.R-project.org/package=RefManageR" class="external-link">RefManageR</a></em>
+(McLean, 2017).</p>
 <p>
-<a id="bib-bates2021matrix"></a><a href="#cite-bates2021matrix">[1]</a><cite> D. Bates and M. Maechler. <em>Matrix: Sparse and Dense Matrix Classes and Methods</em>. R package version 1.3-4. 2021. URL: <a href="https://CRAN.R-project.org/package=Matrix">https://CRAN.R-project.org/package=Matrix</a>.</cite>
+<a id="bib-bates2023matrix"></a><a href="#cite-bates2023matrix">[1]</a><cite>
+D. Bates, M. Maechler, and M. Jagan. <em>Matrix: Sparse and Dense Matrix
+Classes and Methods</em>. R package version 1.5-4. 2023. URL:
+<a href="https://CRAN.R-project.org/package=Matrix" class="external-link">https://CRAN.R-project.org/package=Matrix</a>.</cite>
 </p>
 <p>
-<a id="bib-colladotorres2017derfinderhelper"></a><a href="#cite-colladotorres2017derfinderhelper">[2]</a><cite> L. Collado-Torres, A. E. Jaffe, and J. T. Leek. <em>derfinderHelper: derfinder helper package</em>. <a href="https://github.com/leekgroup/derfinderHelper" class="uri">https://github.com/leekgroup/derfinderHelper</a> - R package version 1.29.0. 2017. DOI: <a href="https://doi.org/10.18129/B9.bioc.derfinderHelper">10.18129/B9.bioc.derfinderHelper</a>. URL: <a href="http://www.bioconductor.org/packages/derfinderHelper">http://www.bioconductor.org/packages/derfinderHelper</a>.</cite>
+<a id="bib-colladotorres2017derfinderhelper"></a><a href="#cite-colladotorres2017derfinderhelper">[2]</a><cite>
+L. Collado-Torres, A. E. Jaffe, and J. T. Leek. <em>derfinderHelper:
+derfinder helper package</em>. <a href="https://github.com/leekgroup/derfinderHelper" class="external-link uri">https://github.com/leekgroup/derfinderHelper</a> - R package
+version 1.35.0. 2017. DOI:
+<a href="https://doi.org/10.18129/B9.bioc.derfinderHelper" class="external-link">10.18129/B9.bioc.derfinderHelper</a>.
+URL:
+<a href="http://www.bioconductor.org/packages/derfinderHelper" class="external-link">http://www.bioconductor.org/packages/derfinderHelper</a>.</cite>
 </p>
 <p>
-<a id="bib-lawrence2013software"></a><a href="#cite-lawrence2013software">[3]</a><cite> M. Lawrence, W. Huber, H. Pagès, et al. “Software for Computing and Annotating Genomic Ranges”. In: <em>PLoS Computational Biology</em> 9 (8 2013). DOI: <a href="https://doi.org/10.1371/journal.pcbi.1003118">10.1371/journal.pcbi.1003118</a>. URL: <a href="http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1003118%7D."></a><a href="http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1003118" class="uri">http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1003118</a>}.
+<a id="bib-lawrence2013software"></a><a href="#cite-lawrence2013software">[3]</a><cite>
+M. Lawrence, W. Huber, H. Pagès, et al. “Software for Computing and
+Annotating Genomic Ranges”. In: <em>PLoS Computational Biology</em> 9 (8
+2013). DOI:
+<a href="https://doi.org/10.1371/journal.pcbi.1003118" class="external-link">10.1371/journal.pcbi.1003118</a>.
+URL:
+<a href="http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1003118%7D." class="external-link"></a><a href="http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1003118" class="external-link uri">http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1003118</a>}.
 </cite></p>
 
 
 <p>
-<a id="bib-mclean2017refmanager"></a><a href="#cite-mclean2017refmanager">[4]</a><cite> M. W. McLean. “RefManageR: Import and Manage BibTeX and BibLaTeX References in R”. In: <em>The Journal of Open Source Software</em> (2017). DOI: <a href="https://doi.org/10.21105/joss.00338">10.21105/joss.00338</a>.</cite>
+<a id="bib-mclean2017refmanager"></a><a href="#cite-mclean2017refmanager">[4]</a><cite>
+M. W. McLean. “RefManageR: Import and Manage BibTeX and BibLaTeX
+References in R”. In: <em>The Journal of Open Source Software</em>
+(2017). DOI:
+<a href="https://doi.org/10.21105/joss.00338" class="external-link">10.21105/joss.00338</a>.</cite>
 </p>
 <p>
-<a id="bib-ole2021biocstyle"></a><a href="#cite-ole2021biocstyle">[5]</a><cite> A. Oleś. <em>BiocStyle: Standard styles for vignettes and other Bioconductor documents</em>. R package version 2.22.0. 2021. URL: <a href="https://github.com/Bioconductor/BiocStyle">https://github.com/Bioconductor/BiocStyle</a>.</cite>
+<a id="bib-ole2023biocstyle"></a><a href="#cite-ole2023biocstyle">[5]</a><cite>
+A. Oleś. <em>BiocStyle: Standard styles for vignettes and other
+Bioconductor documents</em>. R package version 2.28.0. 2023. DOI:
+<a href="https://doi.org/10.18129/B9.bioc.BiocStyle" class="external-link">10.18129/B9.bioc.BiocStyle</a>.
+URL:
+<a href="https://bioconductor.org/packages/BiocStyle" class="external-link">https://bioconductor.org/packages/BiocStyle</a>.</cite>
 </p>
 <p>
-<a id="bib-S4Vectors"></a><a href="#cite-S4Vectors">[6]</a><cite> H. Pagès, M. Lawrence, and P. Aboyoun. <em>S4Vectors: S4 implementation of vector-like and list-like objects</em>. 2017. DOI: <a href="https://doi.org/10.18129/B9.bioc.S4Vectors">10.18129/B9.bioc.S4Vectors</a>.</cite>
+<a id="bib-S4Vectors"></a><a href="#cite-S4Vectors">[6]</a><cite> H.
+Pagès, M. Lawrence, and P. Aboyoun. <em>S4Vectors: S4 implementation of
+vector-like and list-like objects</em>. 2017. DOI:
+<a href="https://doi.org/10.18129/B9.bioc.S4Vectors" class="external-link">10.18129/B9.bioc.S4Vectors</a>.</cite>
 </p>
 <p>
-<a id="bib-2021language"></a><a href="#cite-2021language">[7]</a><cite> R Core Team. <em>R: A Language and Environment for Statistical Computing</em>. R Foundation for Statistical Computing. Vienna, Austria, 2021. URL: <a href="https://www.R-project.org/">https://www.R-project.org/</a>.</cite>
+<a id="bib-2023language"></a><a href="#cite-2023language">[7]</a><cite>
+R Core Team. <em>R: A Language and Environment for Statistical
+Computing</em>. R Foundation for Statistical Computing. Vienna, Austria,
+2023. URL:
+<a href="https://www.R-project.org/" class="external-link">https://www.R-project.org/</a>.</cite>
 </p>
 <p>
-<a id="bib-wickham2011testthat"></a><a href="#cite-wickham2011testthat">[8]</a><cite> H. Wickham. “testthat: Get Started with Testing”. In: <em>The R Journal</em> 3 (2011), pp. 5–10. URL: <a href="https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf">https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf</a>.</cite>
+<a id="bib-wickham2011testthat"></a><a href="#cite-wickham2011testthat">[8]</a><cite>
+H. Wickham. “testthat: Get Started with Testing”. In: <em>The R
+Journal</em> 3 (2011), pp. 5–10. URL:
+<a href="https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf" class="external-link">https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf</a>.</cite>
 </p>
 <p>
-<a id="bib-wickham2021sessioninfo"></a><a href="#cite-wickham2021sessioninfo">[9]</a><cite> H. Wickham, W. Chang, R. Flight, et al. <em>sessioninfo: R Session Information</em>. <a href="https://github.com/r-lib/sessioninfo#readme" class="uri">https://github.com/r-lib/sessioninfo#readme</a>, <a href="https://r-lib.github.io/sessioninfo/" class="uri">https://r-lib.github.io/sessioninfo/</a>. 2021.</cite>
+<a id="bib-wickham2021sessioninfo"></a><a href="#cite-wickham2021sessioninfo">[9]</a><cite>
+H. Wickham, W. Chang, R. Flight, et al. <em>sessioninfo: R Session
+Information</em>. <a href="https://github.com/r-lib/sessioninfo#readme" class="external-link uri">https://github.com/r-lib/sessioninfo#readme</a>, <a href="https://r-lib.github.io/sessioninfo/" class="external-link uri">https://r-lib.github.io/sessioninfo/</a>. 2021.</cite>
 </p>
 <p>
-<a id="bib-xie2014knitr"></a><a href="#cite-xie2014knitr">[10]</a><cite> Y. Xie. “knitr: A Comprehensive Tool for Reproducible Research in R”. In: <em>Implementing Reproducible Computational Research</em>. Ed. by V. Stodden, F. Leisch and R. D. Peng. ISBN 978-1466561595. Chapman and Hall/CRC, 2014. URL: <a href="http://www.crcpress.com/product/isbn/9781466561595">http://www.crcpress.com/product/isbn/9781466561595</a>.</cite>
+<a id="bib-xie2014knitr"></a><a href="#cite-xie2014knitr">[10]</a><cite>
+Y. Xie. “knitr: A Comprehensive Tool for Reproducible Research in R”.
+In: <em>Implementing Reproducible Computational Research</em>. Ed. by V.
+Stodden, F. Leisch and R. D. Peng. ISBN 978-1466561595. Chapman and
+Hall/CRC, 2014.</cite>
 </p>
 </div>
   </div>
@@ -436,11 +574,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Leonardo Collado-Torres, Andrew E. Jaffe, Jeffrey T. Leek.</p>
+  <p></p>
+<p>Developed by Leonardo Collado-Torres, Andrew E. Jaffe, Jeffrey T. Leek.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -448,6 +588,8 @@
 
   
 
+
+  
 
   </body>
 </html>
