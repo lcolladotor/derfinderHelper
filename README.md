@@ -24,7 +24,7 @@ dependencies](https://bioconductor.org/shields/dependencies/release/derfinderHel
 [![Codecov test
 coverage](https://codecov.io/gh/leekgroup/derfinderHelper/branch/devel/graph/badge.svg)](https://codecov.io/gh/leekgroup/derfinderHelper?branch=devel)
 [![R build
-status](https://github.com/leekgroup/derfinderHelper/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/leekgroup/derfinderHelper/actions)
+status](https://github.com/leekgroup/derfinderHelper/actions/workflows/check-bioc.yml/badge.svg)](https://github.com/leekgroup/derfinderHelper/actions/workflows/check-bioc.yml)
 [![GitHub
 issues](https://img.shields.io/github/issues/leekgroup/derfinderHelper)](https://github.com/leekgroup/derfinderHelper/issues)
 [![GitHub
