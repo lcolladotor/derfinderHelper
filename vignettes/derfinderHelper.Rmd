@@ -72,7 +72,7 @@ bib <- c(
     BiocStyle = citation("BiocStyle"),
     knitr = citation("knitr")[3],
     RefManageR = citation("RefManageR")[1],
-    rmarkdown = citation("rmarkdown"),
+    rmarkdown = citation("rmarkdown")[1],
     R = citation(),
     IRanges = citation("IRanges"),
     Matrix = citation("Matrix"),
