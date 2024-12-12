@@ -69,21 +69,21 @@ library("RefManageR")
 ## Write bibliography information
 bib <- c(
     derfinderHelper = citation("derfinderHelper")[1],
-    BiocStyle = citation("BiocStyle"),
+    BiocStyle = citation("BiocStyle")[1],
     knitr = citation("knitr")[3],
     RefManageR = citation("RefManageR")[1],
     rmarkdown = citation("rmarkdown")[1],
     R = citation(),
-    IRanges = citation("IRanges"),
-    Matrix = citation("Matrix"),
+    IRanges = citation("IRanges")[1],
+    Matrix = citation("Matrix")[1],
     S4Vectors = RefManageR::BibEntry(
         bibtype = "manual", key = "S4Vectors",
         author = "Hervé Pagès and Michael Lawrence and Patrick Aboyoun",
         title = "S4Vectors: S4 implementation of vector-like and list-like objects",
         year = 2017, doi = "10.18129/B9.bioc.S4Vectors"
     ),
-    sessioninfo = citation("sessioninfo"),
-    testthat = citation("testthat")
+    sessioninfo = citation("sessioninfo")[1],
+    testthat = citation("testthat")[1]
 )
 ```
 
